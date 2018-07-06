@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -38,5 +39,10 @@ public class UserServiceImpl implements UserService {
         return StreamSupport.stream(listOfAllUser.spliterator(),false)
                 .filter(e -> e.getFirstName().equals(firstName))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteUser(UUID id) {
+        userRepository.delete(userRepository.findById(id).get());
     }
 }

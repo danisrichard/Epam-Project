@@ -1,5 +1,6 @@
 <div id="user-table" class="uk-margin" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="uk-text-center">
+
         <table class="uk-table uk-table-responsive uk-table-divider" th:if="${!userList.isEmpty()}">
             <thead>
             <tr>
@@ -10,11 +11,17 @@
             </thead>
             <tbody>
             <tr th:each="user :${userList}">
-                <td th:text="${user.getId()}"></td>
-                <td th:text="${user.getFirstName()}"></td>
-                <td th:text="${user.getSecondName()}"></td>
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getFirstName()}"></td>
+                    <td th:text="${user.getSecondName()}"></td>
+                    <td>
+                        <a th:href="@{/delete-user/(id=${user.getId()})}">
+                         <button type="button" class="uk-button uk-button-danger"> Delete it!</button>
+                        </a>
+                    </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
