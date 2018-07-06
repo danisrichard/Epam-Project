@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div id="navbar" class="uk-padding-small" th:replace="fragments/navbar::navbar"></div>
+<div class="uk-container">
+    <div clas="uk-margin">
+        <div class="uk-text-center">
+            <div th:if="${inSession != null}" class="uk-margin">
+                <p th:text="${inSession}"> </p>
+            </div>
+            <legend class="uk-legend">Add attribute to session!</legend>
+            <form method="POST" th:action="@{/add-to-session}">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input" name="inputValue" placeholder="">
+                        </div>
+                    </div>
+                    <button class="uk-button" type="submit"> Send it!</button>
+                    <p class="uk-article-meta">You must have go back to 'Home Section' to check your input parameter. </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

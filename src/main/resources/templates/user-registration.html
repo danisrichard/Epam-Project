@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div id="navbar" class="uk-padding-small" th:replace="fragments/navbar::navbar"></div>
+<div class="uk-container">
+    <div clas="uk-margin">
+        <div class="uk-text-center">
+            <div class="uk-padding">
+                <legend class="uk-legend">Add user to list!</legend>
+            </div>
+            <form method="POST" th:action="@{/add-user}" th:user="${user}">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input" th:field="*{user.firstName}" placeholder="First Name">
+                        </div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input" th:field="*{user.secondName}" placeholder="Second Name">
+                        </div>
+                    </div>
+                    <button class="uk-button uk-button-primary" type="submit"> Add to list! </button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div id="user-table" th:replace="user-section/user-table"></div>
+</div>
+</body>
+</html>
