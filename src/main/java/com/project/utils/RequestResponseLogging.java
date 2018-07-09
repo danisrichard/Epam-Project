@@ -23,13 +23,17 @@ public class RequestResponseLogging implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView){
         postTimeInMs = System.currentTimeMillis();
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.info("request method name: {}, response method name: {} , response time: {} ms",
-               ((HandlerMethod) handler).getMethod().getName(), request.getRequestURI(), System.currentTimeMillis() - postTimeInMs);
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
+        try {
+            logger.info("request method name: {}, response method name: {} , response time: {} ms",
+                    ((HandlerMethod) handler).getMethod().getName(), request.getRequestURI(), System.currentTimeMillis() - postTimeInMs);
+        }catch (NullPointerException e){
+            logger.info(e.getMessage());
+        }
     }
 }

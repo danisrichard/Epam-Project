@@ -44,7 +44,7 @@ public class LogUtils {
     }
 
     @NotNull
-    private Level getConcreteLevel(String logLevel) {
+    private Level getConcreteLevel(String logLevel) throws NullPointerException{
         Level[] levels = Level.values();
 
         Optional<Level> optionalLevel = Arrays.stream(levels).filter(e -> e.name().equalsIgnoreCase(logLevel)).findFirst();
