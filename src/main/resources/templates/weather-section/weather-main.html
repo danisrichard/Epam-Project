@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div id="navbar" class="uk-padding-small" th:replace="fragments/navbar::navbar"></div>
+<div class="uk-container">
+    <div class="uk-text-center">
+        <div id="weatherForm" th:replace="weather-section/weather-form"></div>
+    </div>
+</div>
+<div class="uk-section uk-section-muted uk-padding">
+    <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match uk-margin-xlarge" uk-grid>
+        <div>
+            <div id="weatherResultLeft" th:replace="weather-section/weather-result"></div>
+            <!-- A OBJEKTUM  -->
+        </div>
+        <div>
+            <div id="weatherResultDiff" th:replace="weather-section/weather-diff"></div>
+        </div>
+        <div>
+            <div id="weatherResultRight" th:replace="weather-section/weather-result"></div>
+            <!-- B OBJEKTUM -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

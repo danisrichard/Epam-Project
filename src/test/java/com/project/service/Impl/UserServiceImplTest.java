@@ -1,6 +1,6 @@
 package com.project.service.Impl;
 
-import com.project.entity.User;
+import com.project.model.User;
 import com.project.repository.UserRepository;
 import com.project.service.UserService;
 import org.junit.Before;

@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import com.project.entity.User;
+import com.project.model.User;
 import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

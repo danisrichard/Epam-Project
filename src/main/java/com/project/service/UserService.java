@@ -1,7 +1,7 @@
 package com.project.service;
 
 
-import com.project.entity.User;
+import com.project.model.User;
 
 import java.util.List;
 import java.util.Optional;

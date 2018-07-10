@@ -1,7 +1,7 @@
 package com.project.utils;
 
 import com.google.gson.Gson;
-import com.project.entity.LoggerInformation;
+import com.project.model.LoggerInformation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +44,7 @@ public class LogUtils {
     }
 
     @NotNull
-    private Level getConcreteLevel(String logLevel) throws NullPointerException{
+    private Level getConcreteLevel(String logLevel){
         Level[] levels = Level.values();
 
         Optional<Level> optionalLevel = Arrays.stream(levels).filter(e -> e.name().equalsIgnoreCase(logLevel)).findFirst();

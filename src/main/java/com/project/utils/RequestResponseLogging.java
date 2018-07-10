@@ -28,12 +28,12 @@ public class RequestResponseLogging implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws NullPointerException {
         try {
             logger.info("request method name: {}, response method name: {} , response time: {} ms",
                     ((HandlerMethod) handler).getMethod().getName(), request.getRequestURI(), System.currentTimeMillis() - postTimeInMs);
         }catch (NullPointerException e){
-            logger.info(e.getMessage());
+            logger.info("Problem : " + e.fillInStackTrace());
         }
     }
 }
