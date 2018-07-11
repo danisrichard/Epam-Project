@@ -8,11 +8,11 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApixuWeather implements Serializable {
 
-    private static final String API_NAME = "APIXU_WEATHER";
+    private String API_NAME = "APIXU_WEATHER";
     @JsonProperty("current")
     private Current current;
 
-    public static String getApiName() {
+    public String getAPI_NAME() {
         return API_NAME;
     }
 

@@ -9,26 +9,55 @@ import java.io.Serializable;
 public class Current implements Serializable {
 
     @JsonProperty("temp_c")
-    private String temp_c;
-
+    private int temp_c;
     @JsonProperty("wind_kph")
-    private double wind_kph;
+    private int wind_kph;
     @JsonProperty("wind_degree")
     private double wind_degree;
+    @JsonProperty("humidity")
+    private int humidty;
+    @JsonProperty("cloud")
+    private int cloudInPercent;
+    @JsonProperty("pressure_mb")
+    private double pressure;
 
-    public String getTemp_c() {
+    public int getHumidty() {
+        return humidty;
+    }
+
+    public void setHumidty(int humidty) {
+        this.humidty = humidty;
+    }
+
+    public int getCloudInPercent() {
+        return cloudInPercent;
+    }
+
+    public void setCloudInPercent(int cloudInPercent) {
+        this.cloudInPercent = cloudInPercent;
+    }
+
+    public double getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
+    }
+
+    public int getTemp_c() {
         return temp_c;
     }
 
-    public void setTemp_c(String temp_c) {
+    public void setTemp_c(int temp_c) {
         this.temp_c = temp_c;
     }
 
-    public double getWind_kph() {
+    public int getWind_kph() {
         return wind_kph;
     }
 
-    public void setWind_kph(double wind_kph) {
+    public void setWind_kph(int wind_kph) {
         this.wind_kph = wind_kph;
     }
 

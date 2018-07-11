@@ -1,18 +1,31 @@
-<div th:if="${openWeather != null}" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-xlarge" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h3 class="uk-card-title" th:text="${openWeather.getApiName()}"></h3>
+<div th:if="${weather1 != null}" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-xlarge"
+     xmlns:th="http://www.w3.org/1999/xhtml">
+    <h3 class="uk-card-title" th:text="${weather1.getAPI_NAME()}"></h3>
     <table class="uk-table uk-table-striped">
         <tbody>
         <tr>
-            <td>Main data:</td>
-            <td th:text="${openWeather.getMainData().getTemp()}"></td>
-            <td th:text="${openWeather.getMainData().getHumidity()}"></td>
-            <td th:text="${openWeather.getMainData().getPressure()}"></td>
-
+            <td>Cloud In percent:</td>
+            <td th:text="${weather1.getCloudInPercent()} + ' %'"></td>
         </tr>
         <tr>
-            <td>Wind data:</td>
-            <td th:text="${openWeather.getWindData().getSpeed()}"></td>
-            <td th:text="${openWeather.getWindData().getWindDeg()}"></td>
+            <td>Temperature:</td>
+            <td th:text="${weather1.getTempInCelsius()} + ' &deg;C'"></td>
+        </tr>
+        <tr>
+            <td>Humidity:</td>
+            <td th:text="${weather1.getHumidityInPercent()} + '%'"></td>
+        </tr>
+        <tr>
+            <td>Pressure:</td>
+            <td th:text="${weather1.getPressure()}"></td>
+        </tr>
+        <tr>
+            <td>Wind speed:</td>
+            <td th:text="${weather1.getWind_speed()} + ' km/h'"></td>
+        </tr>
+        <tr>
+            <td>Wind degree</td>
+            <td th:text="${weather1.getWind_degree()} + ' &deg;'"></td>
         </tr>
         </tbody>
     </table>

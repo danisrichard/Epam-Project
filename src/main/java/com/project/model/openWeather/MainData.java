@@ -9,33 +9,33 @@ import java.io.Serializable;
 public class MainData implements Serializable {
 
     @JsonProperty("temp")
-    private String temp;
+    private int temp;
     @JsonProperty("humidity")
-    private String humidity;
+    private double humidity;
     @JsonProperty("pressure")
-    private String pressure;
+    private double pressure;
 
-    public String getTemp() {
+    public int getTemp() {
         return temp;
     }
 
-    public void setTemp(String temp) {
+    public void setTemp(int temp) {
         this.temp = temp;
     }
 
-    public String getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public String getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 }

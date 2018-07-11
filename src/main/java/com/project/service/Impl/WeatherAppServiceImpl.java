@@ -1,10 +1,14 @@
 package com.project.service.Impl;
 
 import com.project.model.City;
-import com.project.model.apixuWeather.ApixuWeather;
 import com.project.model.openWeather.OpenWeather;
+import com.project.model.weatherwrapper.Weather;
 import com.project.service.WeatherAppService;
 import com.project.utils.WeatherApiUtil;
+import com.project.utils.WeatherBuilder;
+import javafx.util.Pair;
+import org.apache.commons.lang3.builder.Diff;
+import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +26,39 @@ public class WeatherAppServiceImpl implements WeatherAppService {
     @Autowired
     private WeatherApiUtil weatherApiUtil;
 
+    @Autowired
+    private WeatherBuilder weatherBuilder;
+
+    private Weather apuxiWeather;
+    private Weather openWeather;
+
     @Override
     public List<City> getLocationByCityName(String cityName) throws IOException {
         List<City> cityList = new ArrayList<>();
-        cityList.add(new City("295212","Szentpétervár"));
-        cityList.add(new City("224683","Szendai"));
+        cityList.add(new City("295212", "Szentpétervár"));
+        cityList.add(new City("224683", "Szendai"));
         return cityList;
     }
 
     @Override
-    public OpenWeather getOpenWeatherByCityName(String cityName)throws IOException{
-        return weatherApiUtil.getOpenWeather(cityName);
+    public Weather getOpenWeatherByCityName(String cityName) throws IOException {
+        openWeather = weatherBuilder.buildWeatherModelFromOpenW(weatherApiUtil.getOpenWeather(cityName));
+        return openWeather;
     }
 
     @Override
-    public ApixuWeather getApixuWeatherByCityName(String cityId) throws IOException {
-        return weatherApiUtil.getApixuWeather("dsa");
+    public Weather getApixuWeatherByCityName(String cityName) throws IOException {
+        apuxiWeather = weatherBuilder.buildWeatherModelFromApixuW(weatherApiUtil.getApixuWeather(cityName));
+        return apuxiWeather;
     }
 
+    @Override
+    public Diff getDifferencesTwoObject() {
+
+        DiffResult diff = apuxiWeather.diff(openWeather);
+
+        diff.getDiffs().stream().map(d -> "Left: " + d.getLeft() + " - Right:" + d.getRight()).forEach(System.out::println);
+
+        return null;
+    }
 }

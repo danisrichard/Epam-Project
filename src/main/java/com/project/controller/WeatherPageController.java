@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,14 +32,15 @@ public class WeatherPageController {
     @RequestMapping(value = "/getlocal", method = RequestMethod.GET)
     @ResponseBody
     public List<City> getCity(@RequestParam(value="cityChar",required = false, defaultValue = "Sze") String cityName) throws IOException {
-        logger.info(weatherAppService.getLocationByCityName(cityName));
         return weatherAppService.getLocationByCityName(cityName);
     }
 
     @RequestMapping(value = "/getWeather", method = RequestMethod.GET)
-    public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model) throws IOException {
-        model.addAttribute("apixuWeather",weatherAppService.getApixuWeatherByCityName(cityName));
-        model.addAttribute("openWeather",weatherAppService.getOpenWeatherByCityName(cityName));
+    public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model, HttpSession session) throws IOException {
+        model.addAttribute("weather1",weatherAppService.getApixuWeatherByCityName(cityName));
+        model.addAttribute("weather2",weatherAppService.getOpenWeatherByCityName(cityName));
+
+        weatherAppService.getDifferencesTwoObject();
         return "weather-section/weather-main";
     }
 }

@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-@JsonIgnoreProperties(ignoreUnknown = false)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WindData implements Serializable {
+
+    @JsonProperty("speed")
     private String speed;
     @JsonProperty("deg")
     private int windDeg;

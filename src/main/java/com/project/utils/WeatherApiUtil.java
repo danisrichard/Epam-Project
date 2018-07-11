@@ -28,10 +28,10 @@ public class WeatherApiUtil {
 
     // AccuWeather section
     private final String autoCompleteWithCityKey= "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey={API_KEY}&q={CITY_NAME}&language=en-us";
-    private final String currentLocationWeatherAccuWeather= "http://api.apixu.com/v1/current.json?key=0c00e7a0ab794d1c9c5141506181007&q=Szeged";
+    private final String currentLocationWeatherApuxiWeather = "http://api.apixu.com/v1/current.json?key=0c00e7a0ab794d1c9c5141506181007&q={CITY_NAME}";
 
     //openWeather section
-    private final String currentLocationWeatherOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={ID}";
+    private final String currentLocationWeatherOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={ID}&units=metric";
 
     public List<City> getCityList(String location) throws IOException {
         URI uri = new UriTemplate(autoCompleteWithCityKey).expand(AW_API_KEY,location);
@@ -50,7 +50,7 @@ public class WeatherApiUtil {
     }
 
     public ApixuWeather getApixuWeather(String location) throws IOException{
-        URI uri = new UriTemplate(currentLocationWeatherAccuWeather).expand(location,OW_API_KEY);
+        URI uri = new UriTemplate(currentLocationWeatherApuxiWeather).expand(location);
         logger.info("apixuweather: {}", uri);
 
         RestTemplate restTemplate = new RestTemplate();
@@ -59,7 +59,7 @@ public class WeatherApiUtil {
 
     /*
     public AccuWeather getAccuWeather(String locationKey) throws IOException {
-        URI uri = new UriTemplate(currentLocationWeatherAccuWeather).expand(locationKey, AW_API_KEY);
+        URI uri = new UriTemplate(currentLocationWeatherApuxiWeather).expand(locationKey, AW_API_KEY);
         logger.info(uri);
         RestTemplate restTemplate = new RestTemplate();
         Gson gson = new Gson();

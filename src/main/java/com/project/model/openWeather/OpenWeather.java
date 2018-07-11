@@ -2,30 +2,34 @@ package com.project.model.openWeather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OpenWeather implements Serializable {
 
-    private static final Logger logger = LogManager.getLogger(OpenWeather.class);
-    private static final String API_NAME = "OPEN_WEATHER";
-
-    @JsonProperty("name")
-    private String cityName;
+    private String api_name = "OPEN_WEATHER";
     @JsonProperty("main")
     private MainData mainData;
     @JsonProperty("wind")
     private WindData windData;
+    @JsonProperty("clouds")
+    private Cloud cloud;
+
+    public Cloud getCloud() {
+        return cloud;
+    }
+
+    public void setCloud(Cloud cloud) {
+        this.cloud = cloud;
+    }
 
     public MainData getMainData() {
         return mainData;
     }
 
-    public static String getApiName() {
-        return API_NAME;
+    public String getApiName() {
+        return api_name;
     }
 
     public void setMainData(MainData mainData) {
@@ -40,11 +44,4 @@ public class OpenWeather implements Serializable {
         this.windData = windData;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
 }
