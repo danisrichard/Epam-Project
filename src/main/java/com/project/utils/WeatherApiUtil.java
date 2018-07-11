@@ -12,8 +12,7 @@ import org.springframework.web.util.UriTemplate;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class WeatherApiUtil {
@@ -26,35 +25,39 @@ public class WeatherApiUtil {
     @Value("${api.openweather.key}")
     private String OW_API_KEY;
 
-    // ApuxiWeather section
+    @Value("${api.accuweather.key}")
+    private String AW_API_KEY;
+
+    //Accuweather
     private final String autoCompleteWithCityKey= "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey={API_KEY}&q={CITY_NAME}&language=en-us";
+
+    // ApuxiWeather section
     private final String currentLocationWeatherApuxiWeather = "http://api.apixu.com/v1/current.json?key={API_KEY}&q={CITY_NAME}";
 
     //openWeather section
     private final String currentLocationWeatherOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={ID}&units=metric";
 
-    /*
+
     public List<City> getCityList(String location) throws IOException {
         URI uri = new UriTemplate(autoCompleteWithCityKey).expand(AW_API_KEY,location);
         logger.info("citylist uri: {}",uri);
-
         RestTemplate restTemplate = new RestTemplate();
         return Arrays.asList(restTemplate.getForObject(uri,City[].class));
-    }*/
-
-    public OpenWeather getOpenWeather(String location) throws IOException{
-        URI uri = new UriTemplate(currentLocationWeatherOpenWeather).expand(location,OW_API_KEY);
-        logger.info("openweatherlink: {}", uri);
-
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri.toString(),OpenWeather.class);
     }
 
-    public ApixuWeather getApixuWeather(String location) throws IOException{
-        URI uri = new UriTemplate(currentLocationWeatherApuxiWeather).expand(APUXI_API_KEY,location);
+    public ApixuWeather getApixuWeather(String location) throws IOException {
+        URI uri = new UriTemplate(currentLocationWeatherApuxiWeather).expand(APUXI_API_KEY, location);
         logger.info("apixuweather: {}", uri);
 
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri.toString(),ApixuWeather.class);
+        return restTemplate.getForObject(uri.toString(), ApixuWeather.class);
+    }
+
+    public OpenWeather getOpenWeather(String location) throws IOException {
+        URI uri = new UriTemplate(currentLocationWeatherOpenWeather).expand(location, OW_API_KEY);
+        logger.info("openweatherlink: {}", uri);
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(uri.toString(), OpenWeather.class);
     }
 }

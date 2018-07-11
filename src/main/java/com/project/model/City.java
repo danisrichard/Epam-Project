@@ -8,30 +8,24 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class City implements Serializable {
 
-    private String cityKey;
-    private String localizedName;
+    @JsonProperty("region")
+    private String region;
+    @JsonProperty("country")
+    private String country;
 
-    //JUST FOR TEST
-    public City(String cityKey, String localizedName) {
-        this.cityKey = cityKey;
-        this.localizedName = localizedName;
+    public String getRegion() {
+        return region;
     }
 
-    public String getCityKey() {
-        return cityKey;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
-    @JsonProperty("Key")
-    public void setCityKey(String cityKey) {
-        this.cityKey = cityKey;
+    public String getCountry() {
+        return country;
     }
 
-    public String getLocalizedName() {
-        return localizedName;
-    }
-
-    @JsonProperty("LocalizedName")
-    public void setLocalizedName(String localizedName) {
-        this.localizedName = localizedName;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

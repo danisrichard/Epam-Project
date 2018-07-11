@@ -13,31 +13,5 @@
             <button class="uk-button uk-button-primary" type="submit"> Send City !</button>
         </fieldset>
     </form>
-    <script th:inline="javascript">
- $(function() {
-		$("#cityNames").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "/weather/getlocal",
-					dataType : "json",
-					data : {
-						cityChar : request.term
-					},
-					success : function(data) {
-						response($.map(data,function(el){
-						    console.log(el.localizedName);
-						    return{
-
-						    };
-						}));
-					}
-				});
-			},
-			minLength : 2
-		});
-	});
-
-
-    </script>
 </div>
 
