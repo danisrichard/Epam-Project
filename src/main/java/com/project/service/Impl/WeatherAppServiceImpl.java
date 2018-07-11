@@ -1,12 +1,10 @@
 package com.project.service.Impl;
 
 import com.project.model.City;
-import com.project.model.openWeather.OpenWeather;
 import com.project.model.weatherwrapper.Weather;
 import com.project.service.WeatherAppService;
 import com.project.utils.WeatherApiUtil;
 import com.project.utils.WeatherBuilder;
-import javafx.util.Pair;
 import org.apache.commons.lang3.builder.Diff;
 import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WeatherAppServiceImpl implements WeatherAppService {
@@ -53,12 +53,11 @@ public class WeatherAppServiceImpl implements WeatherAppService {
     }
 
     @Override
-    public Diff getDifferencesTwoObject() {
-
+    public HashMap<String, Double> getDifferencesTwoObject() {
         DiffResult diff = apuxiWeather.diff(openWeather);
 
-        diff.getDiffs().stream().map(d -> "Left: " + d.getLeft() + " - Right:" + d.getRight()).forEach(System.out::println);
-
-        return null;
+        return diff.getDiffs()
+                .stream()
+                .collect(Collectors.toMap(Diff::getFieldName, d -> (Double) d.getLeft() - (Double) d.getRight(), (a, b) -> b, HashMap::new));
     }
 }

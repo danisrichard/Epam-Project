@@ -1,5 +1,12 @@
-<div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-margin-xlarge" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:if="differenceMap != null" class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-margin-xlarge"
+     xmlns:th="http://www.w3.org/1999/xhtml">
     <h3 class="uk-card-title">Difference: </h3>
-
-
+    <table class="uk-table uk-table-striped">
+        <tbody>
+            <tr th:each="differenceMap : ${differenceMap}">
+                <td th:text="${differenceMap.key}"></td>
+                <td th:text="${differenceMap.value}"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

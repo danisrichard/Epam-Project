@@ -9,15 +9,15 @@ import java.io.Serializable;
 public class WindData implements Serializable {
 
     @JsonProperty("speed")
-    private String speed;
+    private double speed;
     @JsonProperty("deg")
     private int windDeg;
 
-    public String getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(String speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 

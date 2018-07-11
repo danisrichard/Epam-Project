@@ -39,8 +39,7 @@ public class WeatherPageController {
     public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model, HttpSession session) throws IOException {
         model.addAttribute("weather1",weatherAppService.getApixuWeatherByCityName(cityName));
         model.addAttribute("weather2",weatherAppService.getOpenWeatherByCityName(cityName));
-
-        weatherAppService.getDifferencesTwoObject();
+        model.addAttribute("differenceMap",weatherAppService.getDifferencesTwoObject());
         return "weather-section/weather-main";
     }
 }

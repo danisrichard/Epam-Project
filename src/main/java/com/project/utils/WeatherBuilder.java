@@ -26,7 +26,7 @@ public class WeatherBuilder {
                                 .withPressure(openWeather.getMainData().getPressure())
                                 .withTempInCelsius(openWeather.getMainData().getTemp())
                                 .withWind_degree(openWeather.getWindData().getWindDeg())
-                                .withWind_speed(openWeather.getWindData().getWindDeg())
+                                .withWind_speed(openWeather.getWindData().getSpeed())
                                 .build();
     }
 }

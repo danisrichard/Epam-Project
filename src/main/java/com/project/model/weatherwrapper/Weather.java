@@ -8,11 +8,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Weather implements Diffable<Weather> {
 
     private String API_NAME;
-    private int cloudInPercent;
-    private int tempInCelsius;
+    private double cloudInPercent;
+    private double tempInCelsius;
     private double humidityInPercent;
     private double pressure;
-    private int wind_speed;
+    private double wind_speed;
     private double wind_degree;
 
     public Weather(Builder builder) {
@@ -44,7 +44,7 @@ public class Weather implements Diffable<Weather> {
         private int tempInCelsius;
         private double humidityInPercent;
         private double pressure;
-        private int wind_speed;
+        private double wind_speed;
         private double wind_degree;
 
         public Builder(String api_name) {
@@ -71,7 +71,7 @@ public class Weather implements Diffable<Weather> {
             return this;
         }
 
-        public Builder withWind_speed(int wind_speed) {
+        public Builder withWind_speed(double wind_speed) {
             this.wind_speed = wind_speed;
             return this;
         }
@@ -90,11 +90,11 @@ public class Weather implements Diffable<Weather> {
         return API_NAME;
     }
 
-    public int getCloudInPercent() {
+    public double getCloudInPercent() {
         return cloudInPercent;
     }
 
-    public int getTempInCelsius() {
+    public double getTempInCelsius() {
         return tempInCelsius;
     }
 
@@ -106,7 +106,7 @@ public class Weather implements Diffable<Weather> {
         return pressure;
     }
 
-    public int getWind_speed() {
+    public double getWind_speed() {
         return wind_speed;
     }
 

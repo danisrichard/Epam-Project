@@ -1,12 +1,14 @@
 <div class="uk-margin" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="uk-margin">
+        <h1> Write your city name!</h1>
+    </div>
     <form th:action="@{/weather/getWeather}" action="POST">
         <fieldset class="uk-fieldset">
 
-            <legend class="uk-legend">Write your city name</legend>
-
             <div class="uk-margin">
-                <input id="cityNames" class="uk-input uk-form-width-medium" type="text" name="cityName" placeholder="Your city name">
-                <label for="cityNames">Cities</label>
+                <input id="cityNames" class="uk-input uk-form-width-medium" type="text" name="cityName"
+                       placeholder="Your city name">
+                <label for="cityNames"></label>
             </div>
             <button class="uk-button uk-button-primary" type="submit"> Send City !</button>
         </fieldset>
@@ -34,6 +36,7 @@
 			minLength : 2
 		});
 	});
+
 
     </script>
 </div>
