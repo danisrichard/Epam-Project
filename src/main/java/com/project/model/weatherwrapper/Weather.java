@@ -15,7 +15,7 @@ public class Weather implements Diffable<Weather> {
     private double wind_speed;
     private double wind_degree;
 
-    public Weather(Builder builder) {
+    private Weather(Builder builder) {
         this.API_NAME = builder.API_NAME;
         this.cloudInPercent = builder.cloudInPercent;
         this.tempInCelsius = builder.tempInCelsius;
@@ -28,12 +28,12 @@ public class Weather implements Diffable<Weather> {
     @Override
     public DiffResult diff(Weather weather) {
         return new DiffBuilder(this,weather,ToStringStyle.DEFAULT_STYLE)
-                .append("cloudInPercent",this.cloudInPercent,weather.cloudInPercent)
-                .append("tempInCelsius",this.tempInCelsius,weather.tempInCelsius)
-                .append("humidityInPercent",this.humidityInPercent,weather.humidityInPercent)
-                .append("pressure",this.pressure,weather.pressure)
-                .append("wind_speed",this.wind_speed, weather.wind_speed)
-                .append("wind_degree",this.wind_degree, weather.wind_degree)
+                .append("Cloud in Percent:",this.cloudInPercent,weather.cloudInPercent)
+                .append("Temperature:",this.tempInCelsius,weather.tempInCelsius)
+                .append("Humidity:",this.humidityInPercent,weather.humidityInPercent)
+                .append("Pressure:",this.pressure,weather.pressure)
+                .append("Wind speed:",this.wind_speed, weather.wind_speed)
+                .append("Wind degree:",this.wind_degree, weather.wind_degree)
                 .build();
     }
 
@@ -112,18 +112,5 @@ public class Weather implements Diffable<Weather> {
 
     public double getWind_degree() {
         return wind_degree;
-    }
-
-    @Override
-    public String toString() {
-        return "weatherwrapper{" +
-                "API_NAME='" + API_NAME + '\'' +
-                ", cloudInPercent=" + cloudInPercent +
-                ", tempInCelsius=" + tempInCelsius +
-                ", humidityInPercent=" + humidityInPercent +
-                ", pressure=" + pressure +
-                ", wind_speed=" + wind_speed +
-                ", wind_degree=" + wind_degree +
-                '}';
     }
 }

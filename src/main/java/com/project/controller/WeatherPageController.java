@@ -36,7 +36,7 @@ public class WeatherPageController {
     }
 
     @RequestMapping(value = "/getWeather", method = RequestMethod.GET)
-    public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model, HttpSession session) throws IOException {
+    public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model) throws IOException {
         model.addAttribute("weather1",weatherAppService.getApixuWeatherByCityName(cityName));
         model.addAttribute("weather2",weatherAppService.getOpenWeatherByCityName(cityName));
         model.addAttribute("differenceMap",weatherAppService.getDifferencesTwoObject());

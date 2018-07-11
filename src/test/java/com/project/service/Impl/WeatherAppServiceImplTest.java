@@ -1,5 +1,6 @@
 package com.project.service.Impl;
 
+import com.project.model.weatherwrapper.Weather;
 import com.project.utils.WeatherApiUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,18 @@ class WeatherAppServiceImplTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void getWeatherObjectByCityName(){
+        Weather weather = null;
+
+        try {
+             weather = weatherAppService.getApixuWeatherByCityName("Szeged");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertNotNull(weather);
     }
 }
