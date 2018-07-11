@@ -1,17 +1,17 @@
 package com.project.utils;
 
 import com.project.model.City;
+import com.project.model.apixuWeather.ApixuWeather;
 import com.project.model.openWeather.OpenWeather;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
 import java.io.IOException;
-import java.net.URI;
+import java.net.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +27,8 @@ public class WeatherApiUtil {
     private String OW_API_KEY;
 
     // AccuWeather section
-    private String autoCompleteWithCityKey= "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey={API_KEY}&q={CITY_NAME}&language=hu-HU";
-    private final String currentLocationWeatherAccuWeather= "http://dataservice.accuweather.com/currentconditions/v1/187706?apikey=q26cLadqdhGBKDsFqeiGwEYVNhJGKHyW&language=hu-HU";
+    private final String autoCompleteWithCityKey= "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey={API_KEY}&q={CITY_NAME}&language=en-us";
+    private final String currentLocationWeatherAccuWeather= "http://api.apixu.com/v1/current.json?key=0c00e7a0ab794d1c9c5141506181007&q=Szeged";
 
     //openWeather section
     private final String currentLocationWeatherOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={ID}";
@@ -49,13 +49,42 @@ public class WeatherApiUtil {
         return restTemplate.getForObject(uri.toString(),OpenWeather.class);
     }
 
-    /*
-    public Object getAccuWeather(String locationKey) throws IOException {
-        URI uri = new UriTemplate(currentLocationWeatherAccuWeather).expand(AW_API_KEY, locationKey);
-        logger.info("accuweatherlink: {}", uri);
+    public ApixuWeather getApixuWeather(String location) throws IOException{
+        URI uri = new UriTemplate(currentLocationWeatherAccuWeather).expand(location,OW_API_KEY);
+        logger.info("apixuweather: {}", uri);
 
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(uri, OpenWeather.class);
+        return restTemplate.getForObject(uri.toString(),ApixuWeather.class);
+    }
+
+    /*
+    public AccuWeather getAccuWeather(String locationKey) throws IOException {
+        URI uri = new UriTemplate(currentLocationWeatherAccuWeather).expand(locationKey, AW_API_KEY);
+        logger.info(uri);
+        RestTemplate restTemplate = new RestTemplate();
+        Gson gson = new Gson();
+
+        URL url = new URL(uri.toString());
+        URLConnection request = url.openConnection();
+        request.connect();
+        String json = getJson(request);
+
+
+        try {
+
+            restTemplate.getForObject(json,AccuWeather[].class);
+
+        }catch (Exception e){
+            logger.info(e.getMessage());
+        }
+
+        return null;
+    }
+
+    private String getJson(URLConnection request) throws IOException {
+        JsonParser jp = new JsonParser ();
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        return root.getAsJsonArray().getAsJsonArray().toString();
     }
     */
 }

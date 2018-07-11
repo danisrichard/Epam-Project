@@ -2,7 +2,6 @@ package com.project.model.openWeather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.model.MainData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +11,6 @@ import java.io.Serializable;
 public class OpenWeather implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(OpenWeather.class);
-
     private static final String API_NAME = "OPEN_WEATHER";
 
     @JsonProperty("name")
@@ -21,9 +19,6 @@ public class OpenWeather implements Serializable {
     private MainData mainData;
     @JsonProperty("wind")
     private WindData windData;
-
-    public OpenWeather() {
-    }
 
     public MainData getMainData() {
         return mainData;

@@ -11,9 +11,6 @@ public class WindData implements Serializable {
     @JsonProperty("deg")
     private int windDeg;
 
-    public WindData() {
-    }
-
     public String getSpeed() {
         return speed;
     }

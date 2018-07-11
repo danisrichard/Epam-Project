@@ -1,6 +1,7 @@
 package com.project.service.Impl;
 
 import com.project.model.City;
+import com.project.model.apixuWeather.ApixuWeather;
 import com.project.model.openWeather.OpenWeather;
 import com.project.service.WeatherAppService;
 import com.project.utils.WeatherApiUtil;
@@ -23,17 +24,9 @@ public class WeatherAppServiceImpl implements WeatherAppService {
 
     @Override
     public List<City> getLocationByCityName(String cityName) throws IOException {
-
-        //weatherApiUtil.getCityList(cityName);
-
         List<City> cityList = new ArrayList<>();
-
-        //{Key: "295212", LocalizedName: "Szentpétervár"}
-
         cityList.add(new City("295212","Szentpétervár"));
         cityList.add(new City("224683","Szendai"));
-
-
         return cityList;
     }
 
@@ -41,4 +34,10 @@ public class WeatherAppServiceImpl implements WeatherAppService {
     public OpenWeather getOpenWeatherByCityName(String cityName)throws IOException{
         return weatherApiUtil.getOpenWeather(cityName);
     }
+
+    @Override
+    public ApixuWeather getApixuWeatherByCityName(String cityId) throws IOException {
+        return weatherApiUtil.getApixuWeather("dsa");
+    }
+
 }
