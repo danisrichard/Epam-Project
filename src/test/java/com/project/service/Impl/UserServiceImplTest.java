@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
@@ -59,6 +61,12 @@ public class UserServiceImplTest {
         User validUser = new User();
         validUser.setFirstName("Test");
         validUser.setSecondName("Test");
+
+        when(userRepository.save(any(User.class))).thenReturn(new User());
+
+        User user = new User();
+
+        assertThat(userService.addNewUser(user),is(notNullValue()));
 
     }
 

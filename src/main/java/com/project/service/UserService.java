@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface UserService {
     Iterable<User> getAllUser();
 
-    void addNewUser(User user);
+    User addNewUser(User user);
 
     Optional<User> findUserByFirstNameQuery(String firstName);
 
