@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +54,7 @@ public class WeatherAppServiceImpl implements WeatherAppService {
     public HashMap<String, Double> getDifferencesTwoObject() {
         DiffResult diff = apuxiWeather.diff(openWeather);
         return diff.getDiffs()
-                .stream()
-                .collect(Collectors.toMap(Diff::getFieldName, d -> (Double) d.getLeft() - (Double) d.getRight(), (a, b) -> b, HashMap::new));
+                     .stream()
+                     .collect(Collectors.toMap(Diff::getFieldName, d -> (Double) d.getLeft() - (Double) d.getRight(), (a, b) -> b, HashMap::new));
     }
 }

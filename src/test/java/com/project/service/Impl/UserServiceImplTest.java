@@ -2,58 +2,74 @@ package com.project.service.Impl;
 
 import com.project.model.User;
 import com.project.repository.UserRepository;
-import com.project.service.UserService;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.stream.StreamSupport;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class UserServiceImplTest {
 
-    @Autowired
-    private UserService userService;
+    @InjectMocks
+    UserServiceImpl userService;
 
-    // ez még mindig elhasal nincs UserRepo!
+    @Mock
+    UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    User user = new User();
+    User user1 = new User();
+    User user2 = new User();
 
     @Before
-    public void init(){
-        User user = new User();
-        user.setFirstName("BlaBla");
-        user.setSecondName("BlaBla2");
+    public void init() {
+        MockitoAnnotations.initMocks(this);
 
-        userRepository.save(user);
+        user.setFirstName("A");
+        user.setSecondName("B");
+
+        user1.setFirstName("C");
+        user1.setSecondName("D");
+
+        user2.setFirstName("A");
+        user2.setSecondName("DSA");
     }
+
 
     @Test
     public void getAllUser() {
-        Iterable<User> listOfUser = userService.getAllUser();
-         String userFirstName = StreamSupport.stream(listOfUser.spliterator(),false)
-                                                    .map(User::getFirstName)
-                                                    .findFirst().get();
-
-         assertEquals(userFirstName,"BlaBla");
     }
 
     @Test
-     void addNewUser() {
+    public void addNewUser() {
     }
 
     @Test
-     void findUserByFirstNameQuery() {
+    public void findUserByFirstNameQuery() {
     }
 
     @Test
-     void findUserByFirstNameWithoutQuery() {
+    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithTwoUserWhenSearchForA() {
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+
+        List<User> userList = userService.findUserByFirstNameWithoutQuery("A");
+
+        assertNotNull(userList);
+        assertEquals(2,userList.size());
+    }
+
+    @Test
+    public void deleteUser() {
     }
 }

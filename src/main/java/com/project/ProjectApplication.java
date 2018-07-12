@@ -1,6 +1,5 @@
 package com.project;
 
-import com.project.config.AppConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

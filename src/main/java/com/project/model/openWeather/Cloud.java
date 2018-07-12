@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cloud {
+
     @JsonProperty("all")
     private int cloudInPercent;
 

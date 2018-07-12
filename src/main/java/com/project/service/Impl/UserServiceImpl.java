@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
     public List<User> findUserByFirstNameWithoutQuery(String firstName) {
         Iterable<User> listOfAllUser = userRepository.findAll();
         return StreamSupport.stream(listOfAllUser.spliterator(),false)
-                .filter(e -> e.getFirstName().equals(firstName))
-                .collect(Collectors.toList());
+                            .filter(e -> e.getFirstName().equalsIgnoreCase(firstName))
+                            .collect(Collectors.toList());
     }
 
     @Override
