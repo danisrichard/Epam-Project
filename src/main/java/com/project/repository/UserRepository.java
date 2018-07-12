@@ -7,4 +7,6 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends CrudRepository<User,UUID> {
+
+    User save(User user);
 }

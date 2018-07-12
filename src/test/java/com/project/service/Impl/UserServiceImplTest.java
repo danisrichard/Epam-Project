@@ -2,6 +2,7 @@ package com.project.service.Impl;
 
 import com.project.model.User;
 import com.project.repository.UserRepository;
+import junit.textui.TestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -16,10 +18,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceImplTest {
 
     @InjectMocks
@@ -48,21 +51,24 @@ public class UserServiceImplTest {
 
 
     @Test
-    public void getAllUser() {
+    public void testgetAllUser() {
     }
 
     @Test
-    public void addNewUser() {
+    public void testaddNewUserShouldAddToUserRepoWhenValidUserIsValid() {
+        User validUser = new User();
+        validUser.setFirstName("Test");
+        validUser.setSecondName("Test");
+
     }
 
     @Test
-    public void findUserByFirstNameQuery() {
+    public void testfindUserByFirstNameQuery() {
     }
 
     @Test
-    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithTwoUserWhenSearchForA() {
+    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithTwoUserWhenSearchToA() {
         when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
-
         List<User> userList = userService.findUserByFirstNameWithoutQuery("A");
 
         assertNotNull(userList);
@@ -70,6 +76,18 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void deleteUser() {
+    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithoutResultWhenInputIsNull() {
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+        List<User> userList = userService.findUserByFirstNameWithoutQuery(null);
+
+        assertTrue(userList.isEmpty());
+    }
+
+    @Test
+    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithoutResultWhenInputIsDButItsNotRepresent(){
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+        List<User> userList = userService.findUserByFirstNameWithoutQuery("D");
+
+        assertTrue(userList.isEmpty());
     }
 }

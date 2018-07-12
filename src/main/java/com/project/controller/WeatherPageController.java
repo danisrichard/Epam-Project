@@ -29,6 +29,8 @@ public class WeatherPageController {
     @RequestMapping(value = "/getlocal", method = RequestMethod.GET)
     @ResponseBody
     public List<City> getCity(@RequestParam(value="cityChar",required = false, defaultValue = "Sze") String cityName) throws IOException {
+        weatherAppService.getLocationByCityName(cityName).forEach(e -> System.out.println(e.getCountry()));
+
         return weatherAppService.getLocationByCityName(cityName);
     }
 
