@@ -1,5 +1,6 @@
 package com.project.utils;
 
+import com.project.error.WeatherServiceException;
 import com.project.model.City;
 import com.project.model.apixuWeather.ApixuWeather;
 import com.project.model.openWeather.OpenWeather;
@@ -38,14 +39,14 @@ public class WeatherApiUtil {
     private final String currentLocationWeatherOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={ID}&units=metric";
 
 
-    public List<City> getCityList(String location) throws IOException {
+    public List<City> getCityList(String location) throws WeatherServiceException {
         URI uri = new UriTemplate(autoCompleteWithCityKey).expand(AW_API_KEY,location);
         logger.info("citylist uri: {}",uri);
         RestTemplate restTemplate = new RestTemplate();
-        return Arrays.asList(restTemplate.getForObject(uri,City[].class));
+        return Arrays.asList(Objects.requireNonNull(restTemplate.getForObject(uri, City[].class)));
     }
 
-    public ApixuWeather getApixuWeather(String location) throws IOException {
+    public ApixuWeather getApixuWeather(String location) throws WeatherServiceException {
         URI uri = new UriTemplate(currentLocationWeatherApuxiWeather).expand(APUXI_API_KEY, location);
         logger.info("apixuweather: {}", uri);
 
@@ -53,7 +54,7 @@ public class WeatherApiUtil {
         return restTemplate.getForObject(uri.toString(), ApixuWeather.class);
     }
 
-    public OpenWeather getOpenWeather(String location) throws IOException {
+    public OpenWeather getOpenWeather(String location) throws WeatherServiceException {
         URI uri = new UriTemplate(currentLocationWeatherOpenWeather).expand(location, OW_API_KEY);
         logger.info("openweatherlink: {}", uri);
 

@@ -1,5 +1,6 @@
 package com.project.service.Impl;
 
+import com.project.error.WeatherServiceException;
 import com.project.model.City;
 import com.project.model.weatherwrapper.Weather;
 import com.project.utils.WeatherApiUtil;
@@ -13,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -38,7 +38,7 @@ class WeatherAppServiceImplTest {
     }
 
     @Test
-    void getLocationByValidCityNameAndReturnOneListSize() throws IOException {
+    void getLocationByValidCityNameAndReturnOneListSize() throws WeatherServiceException {
         List<City> oneElementList = weatherAppService.getLocationByCityName("Szeged");
         assertEquals(1,oneElementList.size());
     }
@@ -48,7 +48,7 @@ class WeatherAppServiceImplTest {
     }
 
     @Test
-    void getWeatherShouldNotNullWhenUsingValidCityName() throws IOException {
+    void getWeatherShouldNotNullWhenUsingValidCityName() throws WeatherServiceException {
         Weather we = weatherAppService.getOpenWeatherByCityName("Szeged");
         assertNotNull(we);
     }

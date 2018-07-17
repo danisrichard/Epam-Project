@@ -1,5 +1,6 @@
 package com.project.service.Impl;
 
+import com.project.error.WeatherServiceException;
 import com.project.model.City;
 import com.project.model.weatherwrapper.Weather;
 import com.project.service.WeatherAppService;
@@ -34,18 +35,18 @@ public class WeatherAppServiceImpl implements WeatherAppService {
     private Weather openWeather;
 
     @Override
-    public List<City> getLocationByCityName(String cityName) throws IOException {
+    public List<City> getLocationByCityName(String cityName) throws WeatherServiceException {
         return Collections.unmodifiableList(weatherApiUtil.getCityList(cityName));
     }
 
     @Override
-    public Weather getOpenWeatherByCityName(String cityName) throws IOException {
+    public Weather getOpenWeatherByCityName(String cityName) throws WeatherServiceException {
         openWeather = weatherBuilder.buildWeatherModelFromOpenW(weatherApiUtil.getOpenWeather(StringUtils.stripAccents(cityName)));
         return openWeather;
     }
 
     @Override
-    public Weather getApixuWeatherByCityName(String cityName) throws IOException {
+    public Weather getApixuWeatherByCityName(String cityName) throws WeatherServiceException {
         apuxiWeather = weatherBuilder.buildWeatherModelFromApixuW(weatherApiUtil.getApixuWeather(StringUtils.stripAccents(cityName)));
         return apuxiWeather;
     }

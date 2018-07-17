@@ -67,7 +67,6 @@ public class UserServiceImplTest {
         User user = new User();
 
         assertThat(userService.addNewUser(user),is(notNullValue()));
-
     }
 
     @Test
