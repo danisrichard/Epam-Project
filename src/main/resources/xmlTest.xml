@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Definition for xmlTest class -->
+    <bean id="xmlTest" class="com.project.model.xmltest.BeanXMLTest">
+
+        <!-- (java.util.List)  -->
+        <property name="addressList">
+            <list>
+                <value>Hun</value>
+                <value>France</value>
+                <value>USA</value>
+                <value>USA</value>
+            </list>
+        </property>
+
+        <!-- (java.util.Set) -->
+        <property name="addressSet">
+            <set>
+                <value>Hun</value>
+                <value>France</value>
+                <value>USA</value>
+                <value>USA</value>
+            </set>
+        </property>
+
+        <!-- (java.util.Map) -->
+        <property name="addressMap">
+            <map>
+                <entry key="1" value="Hun"/>
+                <entry key="2" value="France"/>
+                <entry key="3" value="USA"/>
+                <entry key="4" value="USA"/>
+            </map>
+        </property>
+
+        <!-- (java.util.Properties)-->
+        <property name="addressProp">
+            <props>
+                <prop key="one">Hun</prop>
+                <prop key="one">Hun</prop>
+                <prop key="two">France</prop>
+                <prop key="three">USA</prop>
+                <prop key="four">USA</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
