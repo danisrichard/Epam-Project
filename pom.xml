@@ -49,6 +49,16 @@
             <version>1.7.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fluttercode.datafactory/datafactory -->
+        <dependency>
+            <groupId>org.fluttercode.datafactory</groupId>
+            <artifactId>datafactory</artifactId>
+            <version>0.8</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

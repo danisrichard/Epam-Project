@@ -23,25 +23,25 @@ public class WeatherPageController {
     private WeatherAppService weatherAppService;
 
     @GetMapping
-    public String getPage(){
+    public String getPage() {
         return "weather-section/weather-main";
     }
 
     @RequestMapping(value = "/getlocal", method = RequestMethod.GET)
     @ResponseBody
-    public List<City> getCity(@RequestParam(value="cityChar",required = false, defaultValue = "Sze") String cityName) throws WeatherServiceException {
+    public List<City> getCity(@RequestParam(value = "cityChar", required = false, defaultValue = "Sze") String cityName) throws WeatherServiceException {
         weatherAppService.getLocationByCityName(cityName).forEach(e -> System.out.println(e.getCountry()));
 
         return weatherAppService.getLocationByCityName(cityName);
     }
 
     @RequestMapping(value = "/getWeather", method = RequestMethod.GET)
-    public String getWeather(@RequestParam(value="cityName", required = false) String cityName, Model model) throws WeatherServiceException {
+    public String getWeather(@RequestParam(value = "cityName", required = false) String cityName, Model model) throws WeatherServiceException {
         try {
             model.addAttribute("weather1", weatherAppService.getApixuWeatherByCityName(cityName));
             model.addAttribute("weather2", weatherAppService.getOpenWeatherByCityName(cityName));
             model.addAttribute("differenceMap", weatherAppService.getDifferencesTwoObject());
-        }catch (HttpClientErrorException e){
+        } catch (HttpClientErrorException e) {
             throw new WeatherServiceException(cityName);
         }
         return "weather-section/weather-main";
