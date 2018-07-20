@@ -1,37 +1,83 @@
 package com.project.model.cinemaproject.cinemadecorator;
 
-import com.project.model.cinemaproject.Currency;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.UUID;
 
-@Document
-public class BasicCinema implements Cinema{
+public class BasicCinema implements Cinema {
 
-    @Id
-    private UUID id;
-    private String cinemaName;
-    private int currentMoney;
+    protected String cinemaName;
+    protected int currentMoney;
     @Max(100)
     @Min(0)
-    private int purity;
-    private int seats;
+    protected int purity;
+    protected int seats;
     @Max(100)
     @Min(0)
-    private int maintained;
-    private Currency currency;
-
+    protected int maintained;
 
     public BasicCinema() {
+        this.purity = 20;
+        this.seats = 0;
     }
 
     @Override
-    public int getCurrenctMoney() {
+    public int getFreePlaceInCinema() {
+        return purity - seats;
+    }
+
+    @Override
+    public int getCurrentMoney() {
         return currentMoney;
+    }
+
+    @Override
+    public String getCinemaName() {
+        return cinemaName;
+    }
+
+    @Override
+    public void setCinemaName(String cinemaName) {
+        this.cinemaName = cinemaName;
+    }
+
+    @Override
+    public void decreaseCurrentMoney(int value) {
+        this.currentMoney -= value;
+    }
+
+    @Override
+    public void increaseCurrentMoney(int value) {
+        this.currentMoney += value;
+    }
+
+    @Override
+    public int getPurity() {
+        return purity;
+    }
+
+    @Override
+    public void increasePurityOne() {
+        this.purity += 1;
+    }
+
+    @Override
+    public int getSeatsNumber() {
+        return seats;
+    }
+
+    @Override
+    public void increaseSeatNumberOne(){
+        this.seats++;
+    }
+
+    @Override
+    public int getMaintained() {
+        return maintained;
+    }
+
+    @Override
+    public void setMaintained(int maintained) {
+        this.maintained = maintained;
     }
 
 }

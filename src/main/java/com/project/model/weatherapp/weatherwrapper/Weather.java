@@ -1,4 +1,4 @@
-package com.project.model.weatherwrapper;
+package com.project.model.weatherapp.weatherwrapper;
 
 import org.apache.commons.lang3.builder.DiffBuilder;
 import org.apache.commons.lang3.builder.DiffResult;

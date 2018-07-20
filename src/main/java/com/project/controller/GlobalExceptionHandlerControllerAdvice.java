@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import com.project.error.NotEnoughFreePlaceException;
+import com.project.error.NotEnoughMoneyException;
 import com.project.error.WeatherServiceException;
 import com.project.model.error.ExceptionResponse;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,26 @@ public class GlobalExceptionHandlerControllerAdvice {
     ExceptionResponse handleWeatherServiceNotFoundCityName(final WeatherServiceException wse, final HttpServletRequest httpServletRequest) {
         return new ExceptionResponse.Builder()
                 .withErrorMessage(String.format("%s is not found", wse.getMessage()))
+                .withRequestedURI(httpServletRequest.getRequestURI())
+                .build();
+    }
+
+    @ExceptionHandler(NotEnoughFreePlaceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody
+    ExceptionResponse handleCinemaHasntGotEnoughFreePlace(final NotEnoughFreePlaceException wse, final HttpServletRequest httpServletRequest) {
+        return new ExceptionResponse.Builder()
+                .withErrorMessage(wse.getMessage())
+                .withRequestedURI(httpServletRequest.getRequestURI())
+                .build();
+    }
+
+    @ExceptionHandler(NotEnoughMoneyException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody
+    ExceptionResponse handleCinemaHasntGotEnoughMoney(final NotEnoughMoneyException wse, final HttpServletRequest httpServletRequest) {
+        return new ExceptionResponse.Builder()
+                .withErrorMessage(wse.getMessage())
                 .withRequestedURI(httpServletRequest.getRequestURI())
                 .build();
     }

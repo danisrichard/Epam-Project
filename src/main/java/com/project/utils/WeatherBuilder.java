@@ -1,8 +1,8 @@
 package com.project.utils;
 
-import com.project.model.weatherwrapper.Weather;
-import com.project.model.apixuWeather.ApixuWeather;
-import com.project.model.openWeather.OpenWeather;
+import com.project.model.weatherapp.weatherwrapper.Weather;
+import com.project.model.weatherapp.apixuWeather.ApixuWeather;
+import com.project.model.weatherapp.openWeather.OpenWeather;
 import org.springframework.stereotype.Component;
 
 @Component

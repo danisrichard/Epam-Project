@@ -2,7 +2,7 @@ package com.project.service.Impl;
 
 import com.project.error.WeatherServiceException;
 import com.project.model.City;
-import com.project.model.weatherwrapper.Weather;
+import com.project.model.weatherapp.weatherwrapper.Weather;
 import com.project.utils.WeatherApiUtil;
 import com.project.utils.WeatherBuilder;
 import org.junit.Before;

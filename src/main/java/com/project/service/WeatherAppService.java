@@ -2,9 +2,8 @@ package com.project.service;
 
 import com.project.error.WeatherServiceException;
 import com.project.model.City;
-import com.project.model.weatherwrapper.Weather;
+import com.project.model.weatherapp.weatherwrapper.Weather;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 

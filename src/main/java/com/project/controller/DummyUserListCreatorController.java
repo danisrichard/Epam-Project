@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
-public class DummyUserRegistrationController {
+public class DummyUserListCreatorController {
 
     @Autowired
     private UserService userService;

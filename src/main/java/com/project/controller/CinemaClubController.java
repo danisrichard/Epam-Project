@@ -1,7 +1,8 @@
 package com.project.controller;
 
 import com.project.model.cinemaproject.equipment.Equipment;
-import com.project.service.CinemaClubService;
+import com.project.service.CinemaClubEquipmentService;
+import com.project.service.CinemaStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CinemaClubController {
 
     @Autowired
-    private CinemaClubService cinemaClubService;
+    private CinemaClubEquipmentService cinemaClubService;
+
+    @Autowired
+    private CinemaStoreService cinemaStoreService;
 
     @GetMapping
     public String getCinemaIndexPage(){
@@ -24,15 +28,16 @@ public class CinemaClubController {
 
     @GetMapping("/equipment")
     public String equipmentPage(Model model){
-        model.addAttribute("equipment", new Equipment());
-        model.addAttribute("listOfEquipment",cinemaClubService.getAllEquipment());
         return "cinema-equipment-section";
     }
 
     @PutMapping("/equipment/add-new-equipment")
     public String addNewEquipment(BindingResult bindingResult, Equipment equipment){
-        //cinemaClubService.
+
+
         return "";
     }
+
+
 
 }

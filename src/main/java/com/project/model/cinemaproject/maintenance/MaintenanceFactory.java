@@ -2,7 +2,7 @@ package com.project.model.cinemaproject.maintenance;
 
 public class MaintenanceFactory {
 
-    public Maintenance getMainTance(String maintanceName) {
+    public Maintenance getMaintenance(String maintanceName) {
 
         maintanceName = maintanceName.toLowerCase().replace("\\s+", "");
 

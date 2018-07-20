@@ -2,8 +2,8 @@ package com.project.utils;
 
 import com.project.error.WeatherServiceException;
 import com.project.model.City;
-import com.project.model.apixuWeather.ApixuWeather;
-import com.project.model.openWeather.OpenWeather;
+import com.project.model.weatherapp.apixuWeather.ApixuWeather;
+import com.project.model.weatherapp.openWeather.OpenWeather;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
-import java.io.IOException;
 import java.net.*;
 import java.util.*;
 

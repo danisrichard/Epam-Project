@@ -1,5 +1,10 @@
 package com.project.service.Impl;
 
+import com.project.error.NotEnoughFreePlaceException;
+import com.project.error.NotEnoughMoneyException;
+import com.project.model.cinemaproject.cinemadecorator.BasicCinema;
+import com.project.model.cinemaproject.cinemadecorator.Cinema;
+import com.project.model.cinemaproject.cinemadecorator.decorator.TwoDProjectorCinema;
 import com.project.model.cinemaproject.equipment.Equipment;
 import com.project.model.cinemaproject.maintenance.MaintenanceFactory;
 import com.project.repository.EquipmentRepository;
@@ -24,8 +29,14 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CinemaClubImplUnitTest {
 
+    private final static int CANVAS_PRICE = 5000;
+    private final static int ONE_SEAT_PRICE = 50;
+    private final static int ONE_FLOOR_AREA = 200;
+    private final static int TWO_D_PROJECTOR_PRICE = 5000;
+    private final static int THREE_D_PROJECTOR_PRICE = 9000;
+
     @InjectMocks
-    CinemaClubImpl cinemaClubService;
+    CinemaClubEquipmentServiceImpl cinemaClubService;
 
     @Mock
     EquipmentRepository equipmentRepository;
@@ -62,18 +73,69 @@ public class CinemaClubImplUnitTest {
     }
 
     @Test
-    public void buyEquipment() {
+    public void buyTwoDProjectorWhenHaveGotEnoughMoneyShouldReturnTwoDProjectDecoratorEntity() throws NotEnoughMoneyException, NotEnoughFreePlaceException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(TWO_D_PROJECTOR_PRICE);
+
+        Cinema returnCinema = cinemaClubService.buyTwoDProjector(cinema);
+
+        Cinema cinema1 = new TwoDProjectorCinema(new BasicCinema());
+
+        assertNotEquals(cinema1,returnCinema);
     }
 
     @Test
-    public void buyMaintenance() {
+    public void buyTwoDProjectorWhenHaveGotEnoughMoneyShouldReturnTwoDProjectDecoratorEntityMinusFiveThousand() throws NotEnoughMoneyException, NotEnoughFreePlaceException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(TWO_D_PROJECTOR_PRICE);
+
+        int returnMoney = cinemaClubService.buyTwoDProjector(cinema).getCurrentMoney();
+
+        assertEquals(0,returnMoney);
     }
 
     @Test
-    public void endOfTheDay() {
+    public void buyThreeDProjectorWhenHaveGotEnoughMoneyShouldReturnThreeDProjectDecoratorEntity() throws NotEnoughMoneyException, NotEnoughFreePlaceException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(THREE_D_PROJECTOR_PRICE);
+
+        Cinema returnCinema = cinemaClubService.buyThreeDProjector(cinema);
+
+        assertEquals(cinema,returnCinema);
     }
 
     @Test
-    public void screeningInCinema() {
+    public void buyCanvasWhenHaveGotEnoughMoneyShouldReturnCinemaCanvasDecoratorEntity() throws NotEnoughMoneyException, NotEnoughFreePlaceException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(CANVAS_PRICE);
+
+        Cinema responseCinema = cinemaClubService.buyCanvas(cinema);
+
+        assertEquals(cinema,responseCinema);
+    }
+
+    @Test
+    public void buyOneFloorAreaToCinemaWhenHaveGotEnoughMoneyShouldReturnIncreasedFloorAreInCinemaObject() throws NotEnoughMoneyException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(ONE_FLOOR_AREA);
+        int baseFloorArea = cinema.getPurity();
+
+        baseFloorArea += 1;
+
+        int returnFloor = cinemaClubService.buyOneFloorAreaToCinema(cinema).getPurity();
+
+        assertEquals(baseFloorArea,returnFloor);
+    }
+
+    @Test
+    public void buyOneSeatsToCinemaWhenHaveGotEnoughMoneyShouldReturnIncreasedSeatInCinemaObject() throws NotEnoughMoneyException, NotEnoughFreePlaceException {
+        Cinema cinema = new BasicCinema();
+        cinema.increaseCurrentMoney(ONE_SEAT_PRICE);
+
+        int seatsNumber = cinema.getSeatsNumber() + 1;
+
+        int returnSeatNumber = cinemaClubService.buyOneSeatsToCinema(cinema).getSeatsNumber();
+
+        assertEquals(seatsNumber,returnSeatNumber);
     }
 }
