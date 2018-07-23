@@ -1,0 +1,19 @@
+## Database
+# H2
+h2:
+  datasource:
+    url:jdbc:h2:file:~/project
+    username:sa
+    password:1234
+    driver-class-name:org.h2.Driver
+  jpa:
+    show-sql=true
+
+# Mongo DB
+
+mongodb:
+  datasource:
+      mongodb:
+        database: testdb
+        host: localhost
+        port: 27017

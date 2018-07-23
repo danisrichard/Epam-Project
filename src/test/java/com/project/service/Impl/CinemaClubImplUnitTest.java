@@ -4,10 +4,13 @@ import com.project.error.NotEnoughFreePlaceException;
 import com.project.error.NotEnoughMoneyException;
 import com.project.model.cinemaproject.cinemadecorator.BasicCinema;
 import com.project.model.cinemaproject.cinemadecorator.Cinema;
+import com.project.model.cinemaproject.cinemadecorator.decorator.CinemaCanvas;
+import com.project.model.cinemaproject.cinemadecorator.decorator.ThreeDProjectorCinema;
 import com.project.model.cinemaproject.cinemadecorator.decorator.TwoDProjectorCinema;
 import com.project.model.cinemaproject.equipment.Equipment;
 import com.project.model.cinemaproject.maintenance.MaintenanceFactory;
 import com.project.repository.EquipmentRepository;
+import com.project.service.Impl.cinema.CinemaClubEquipmentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -55,13 +59,13 @@ public class CinemaClubImplUnitTest {
         Equipment equipmentTwo = new Equipment();
         Equipment equipmentThree = new Equipment();
 
-        List<Equipment> equipmentBasicList = new ArrayList<>(Arrays.asList(equipmentOne,equipmentTwo,equipmentThree));
+        List<Equipment> equipmentBasicList = new ArrayList<>(Arrays.asList(equipmentOne, equipmentTwo, equipmentThree));
 
         when(equipmentRepository.findAll()).thenReturn(Arrays.asList(equipmentOne, equipmentTwo, equipmentThree));
         List<Equipment> equipmentServiceList = cinemaClubService.getAllEquipment();
 
         assertNotNull(equipmentServiceList);
-        assertEquals(equipmentBasicList,equipmentServiceList);
+        assertEquals(equipmentBasicList, equipmentServiceList);
     }
 
     @Test
@@ -81,7 +85,7 @@ public class CinemaClubImplUnitTest {
 
         Cinema cinema1 = new TwoDProjectorCinema(new BasicCinema());
 
-        assertNotEquals(cinema1,returnCinema);
+        assertNotEquals(cinema1, returnCinema);
     }
 
     @Test
@@ -91,7 +95,7 @@ public class CinemaClubImplUnitTest {
 
         int returnMoney = cinemaClubService.buyTwoDProjector(cinema).getCurrentMoney();
 
-        assertEquals(0,returnMoney);
+        assertEquals(0, returnMoney);
     }
 
     @Test
@@ -101,7 +105,7 @@ public class CinemaClubImplUnitTest {
 
         Cinema returnCinema = cinemaClubService.buyThreeDProjector(cinema);
 
-        assertEquals(cinema,returnCinema);
+        assertTrue(returnCinema instanceof ThreeDProjectorCinema);
     }
 
     @Test
@@ -111,7 +115,7 @@ public class CinemaClubImplUnitTest {
 
         Cinema responseCinema = cinemaClubService.buyCanvas(cinema);
 
-        assertEquals(cinema,responseCinema);
+        assertTrue(responseCinema instanceof CinemaCanvas);
     }
 
     @Test
@@ -124,7 +128,7 @@ public class CinemaClubImplUnitTest {
 
         int returnFloor = cinemaClubService.buyOneFloorAreaToCinema(cinema).getPurity();
 
-        assertEquals(baseFloorArea,returnFloor);
+        assertEquals(baseFloorArea, returnFloor);
     }
 
     @Test
@@ -136,6 +140,6 @@ public class CinemaClubImplUnitTest {
 
         int returnSeatNumber = cinemaClubService.buyOneSeatsToCinema(cinema).getSeatsNumber();
 
-        assertEquals(seatsNumber,returnSeatNumber);
+        assertEquals(seatsNumber, returnSeatNumber);
     }
 }

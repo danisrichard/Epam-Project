@@ -7,4 +7,6 @@ public class ThreeDProjectorCinema extends CinemaDecorator {
     public ThreeDProjectorCinema(Cinema cinema) {
         super(cinema);
     }
+
+
 }

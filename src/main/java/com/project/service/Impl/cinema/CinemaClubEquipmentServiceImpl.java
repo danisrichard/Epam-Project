@@ -1,4 +1,4 @@
-package com.project.service.Impl;
+package com.project.service.Impl.cinema;
 
 import com.project.error.NotEnoughFreePlaceException;
 import com.project.error.NotEnoughMoneyException;
@@ -74,7 +74,6 @@ public class CinemaClubEquipmentServiceImpl implements CinemaClubEquipmentServic
         }
         return cinema;
     }
-
 
     private boolean cinemaFreePlacesChecker(Cinema cinema, int requiredFreePlace) throws NotEnoughFreePlaceException {
         if (cinema.getFreePlaceInCinema() >= requiredFreePlace) {

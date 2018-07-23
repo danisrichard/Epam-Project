@@ -61,8 +61,6 @@ public class UserServiceImplTest {
 
         when(userRepository.save(any(User.class))).thenReturn(new User());
 
-        User user = new User();
-
         assertThat(userService.addNewUser(user),is(notNullValue()));
     }
 
