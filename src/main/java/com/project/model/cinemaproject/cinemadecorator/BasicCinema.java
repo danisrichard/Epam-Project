@@ -14,15 +14,18 @@ public class BasicCinema implements Cinema {
     @Max(100)
     @Min(0)
     protected int maintained;
+    protected int floorArea;
 
     public BasicCinema() {
-        this.purity = 20;
+        this.purity = 100;
         this.seats = 0;
+        this.maintained = 100;
+        this.floorArea = 20;
     }
 
     @Override
     public int getFreePlaceInCinema() {
-        return purity - seats;
+        return floorArea - seats;
     }
 
     @Override
@@ -56,8 +59,8 @@ public class BasicCinema implements Cinema {
     }
 
     @Override
-    public void increasePurityOne() {
-        this.purity += 1;
+    public void increaseFloorAreaOne() {
+        this.floorArea += 1;
     }
 
     @Override
@@ -66,7 +69,7 @@ public class BasicCinema implements Cinema {
     }
 
     @Override
-    public void increaseSeatNumberOne(){
+    public void increaseSeatNumberOne() {
         this.seats++;
     }
 

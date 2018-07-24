@@ -10,7 +10,6 @@ public interface Movie {
     ScreenTechnologies getScreenTechnologies();
     double getPopularityIndex();
     double getChanceToWatch();
-    double getLeaseRights();
-    int getFilmPrice();
+    int getLeaseRights();
     int getTicketPrice();
 }

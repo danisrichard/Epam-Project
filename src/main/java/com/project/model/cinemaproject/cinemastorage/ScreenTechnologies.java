@@ -1,15 +1,15 @@
 package com.project.model.cinemaproject.cinemastorage;
 
 public enum ScreenTechnologies {
-    TWO_D(0),THREE_D(10);
+    TWO_D(0),THREE_D(0.1);
 
-    private final int screenTechnologiesInPercent;
+    private final double screenTechnologiesInPercent;
 
-    ScreenTechnologies(int screenTechnologiesInPercent) {
+    ScreenTechnologies(double screenTechnologiesInPercent) {
         this.screenTechnologiesInPercent = screenTechnologiesInPercent;
     }
 
-    public int getScreenTechnologiesInPercent() {
+    public double getScreenTechnologiesInPercent() {
         return screenTechnologiesInPercent;
     }
 }

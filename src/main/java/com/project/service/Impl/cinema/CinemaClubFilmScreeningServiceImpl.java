@@ -14,42 +14,35 @@ import static com.project.model.cinemaproject.cinemastorage.ScreeningPrices.*;
 @Service
 public class CinemaClubFilmScreeningServiceImpl implements CinemaClubFilmScreeningService {
 
-    // movie extendedMovie pattern erre nem jó -> 2018.07.24
-
     @Override
     public Movie getConcreteMovie(@Valid BasicMovie movie, Cinema cinema) {
 
-        int filmPrice = calculateLeaseRights(movie);
+        int leaseRights = calculateLeaseRights(movie);
         double popularityIndex = calculatePopularityIndex(movie, cinema);
-        double calculateChanceToWatch = calculateChanceToWatch(movie,cinema,popularityIndex);
+        double calculateChanceToWatch = calculateChanceToWatch(movie, cinema, popularityIndex, leaseRights);
 
         return new CinemaPriceChanceWatch.Builder(movie)
                 .popularityIndex(popularityIndex)
-                .leaseRights(calculateLeaseRights(movie))
-                .chanceToWatch(0)
+                .leaseRights(leaseRights)
+                .chanceToWatch(calculateChanceToWatch)
                 .build();
     }
 
-    private int calculateLeaseRights(@Valid BasicMovie movie) {
-        return ((movie.getIMDBPoint() + 1) * 150) * (movie.getScreenTechnologies()
-                .getScreenTechnologiesInPercent()
-                + movie.getLanguage()
-                .getLanguageInPercent());
+    private int calculateLeaseRights(BasicMovie movie) {
+        return (int) (((movie.getIMDBPoint() + 1) * 150) * ( 1 + (movie.getScreenTechnologies().getScreenTechnologiesInPercent()
+                        + movie.getLanguage().getLanguageInPercent())));
     }
 
-    private double calculateChanceToWatch(@Valid BasicMovie movie, Cinema cinema, double popularityIndex) {
-        return
-    }
-
-    private int calculateProfit(Movie movie) {
-        return 0;
-    }
-
-    private double calculatePopularityIndex(@Valid BasicMovie movie, Cinema cinema) {
+    private double calculatePopularityIndex(BasicMovie movie, Cinema cinema) {
         return (movie.getIMDBPoint() * IMDB_MULTIPLIER)
-                + (movie.getLanguage().getLanguageInPercent() * LANGUAGE_PRICE)
-                + movie.getScreenTechnologies().getScreenTechnologiesInPercent()
+                + (movie.getLanguage().ordinal() * LANGUAGE_MULTIPLIER)
+                + movie.getScreenTechnologies().ordinal()
                 + (cinema.getPurity() * PURITY_MULTIPLIER);
+    }
+
+    private double calculateChanceToWatch(BasicMovie movie, Cinema cinema, double popularityIndex, int leaseRights) {
+        return (leaseRights / (Math.log(cinema.getSeatsNumber()) * SEAT_NUMBER_MULTIPLIER))
+                * (((popularityIndex / 10) + POPULARITY_INDEX_MULTIPLIER) / movie.getTicketPrice()) * 100;
     }
 
 }

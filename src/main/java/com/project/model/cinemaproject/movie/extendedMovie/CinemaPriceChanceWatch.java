@@ -12,7 +12,7 @@ public class CinemaPriceChanceWatch extends MovieDecorator{
     }
 
     public static final class Builder {
-        private double leaseRights;
+        private int leaseRights;
         private double popularityIndex;
         private BasicMovie movie;
         private double chanceToWatch;
@@ -21,7 +21,7 @@ public class CinemaPriceChanceWatch extends MovieDecorator{
             movie = val;
         }
 
-        public Builder leaseRights(double val) {
+        public Builder leaseRights(int val) {
             leaseRights = val;
             return this;
         }

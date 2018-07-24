@@ -1,15 +1,15 @@
 package com.project.model.cinemaproject.cinemastorage;
 
 public enum Language {
-    ENGLISH(0),HUNGARY_SUB(5),HUNGARY_SYNC(10);
+    ENGLISH(0),HUNGARY_SUB(0.5),HUNGARY_SYNC(0.1);
 
-    private final int languageInPercent;
+    private final double languageInPercent;
 
-    Language(int languageInPercent) {
+    Language(double languageInPercent) {
         this.languageInPercent = languageInPercent;
     }
 
-    public int getLanguageInPercent() {
+    public double getLanguageInPercent() {
         return languageInPercent;
     }
 }

@@ -36,6 +36,7 @@ public class BasicMovie{
         IMDBPoint = builder.IMDBPoint;
         language = builder.language;
         screenTechnologies = builder.screenTechnologies;
+        ticketPrice = builder.ticketPrice;
     }
 
     public static final class Builder {

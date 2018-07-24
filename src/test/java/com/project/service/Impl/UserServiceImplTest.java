@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -48,14 +49,13 @@ public class UserServiceImplTest {
         user2.setSecondName("DSA");
     }
 
-
     @Test
     public void testgetAllUser() {
     }
 
     @Test
     public void testaddNewUserShouldAddToUserRepoWhenValidUserIsValid() {
-        User validUser = new User();
+        User validUser = Mockito.mock(User.class);
         validUser.setFirstName("Test");
         validUser.setSecondName("Test");
 

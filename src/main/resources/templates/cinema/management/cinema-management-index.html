@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class="uk-background-muted uk-position-cover ">
+
+    <div class="uk-offcanvas-content">
+
+        <div class="uk-position-small uk-position-top-left">
+            <span type="button" uk-toggle="target: #offcanvas-push">
+            <span uk-navbar-toggle-icon></span>
+        </span></div>
+
+        <div id="offcanvas-push" uk-offcanvas="mode: push; overlay: true">
+            <div class="uk-offcanvas-bar">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                <h3>Title</h3>
+            </div>
+        </div>
+
+        <div class="uk-container uk-margin-top">
+            <div class="uk-margin" uk-grid>
+                <div class="uk-width-expand@m">
+
+                    <div th:replace="cinema/management/management-section/setpoints-section"></div>
+
+                </div>
+                <div class="uk-width-1-3@m">
+                    <div>
+                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Default</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-auto@m">
+                    <div>
+                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Default</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin" uk-grid>
+                <div class="uk-width-3-4">
+                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-4</div>
+                </div>
+                <div class="uk-width-1-4">
+                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">3-4</div>
+                </div>
+            </div>
+
+            <div class="uk-text-center" uk-grid>
+                <div class="uk-width-1-3">
+                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                </div>
+                <div class="uk-width-1-3">
+                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                </div>
+                <div class="uk-width-1-3">
+                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -14,7 +14,7 @@ public interface Cinema {
 
     int getPurity();
 
-    void increasePurityOne();
+    void increaseFloorAreaOne();
 
     int getSeatsNumber();
 

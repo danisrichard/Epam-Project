@@ -4,9 +4,11 @@ import com.project.model.cinemaproject.cinemastorage.Language;
 import com.project.model.cinemaproject.cinemastorage.ScreenTechnologies;
 import com.project.model.cinemaproject.movie.BasicMovie;
 
+import java.text.DecimalFormat;
+
 public abstract class MovieDecorator implements Movie{
 
-    protected double leaseRights;
+    protected int leaseRights;
 
     protected double popularityIndex;
 
@@ -30,17 +32,13 @@ public abstract class MovieDecorator implements Movie{
     }
 
     @Override
-    public int getFilmPrice() {
-        return filmPrice;
-    }
-
-    @Override
     public double getChanceToWatch() {
-        return chanceToWatch;
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        return Double.parseDouble(decimalFormat.format(chanceToWatch));
     }
 
     @Override
-    public double getLeaseRights() {
+    public int getLeaseRights() {
         return leaseRights;
     }
 

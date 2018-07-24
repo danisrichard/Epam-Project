@@ -46,8 +46,8 @@ public abstract class CinemaDecorator implements Cinema {
     }
 
     @Override
-    public void increasePurityOne() {
-        this.cinema.increasePurityOne();
+    public void increaseFloorAreaOne() {
+        this.cinema.increaseFloorAreaOne();
     }
 
     @Override
