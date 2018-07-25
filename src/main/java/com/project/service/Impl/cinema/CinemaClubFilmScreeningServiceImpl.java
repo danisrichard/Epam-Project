@@ -5,6 +5,7 @@ import com.project.model.cinemaproject.movie.BasicMovie;
 import com.project.model.cinemaproject.movie.extendedMovie.Movie;
 import com.project.model.cinemaproject.movie.extendedMovie.CinemaPriceChanceWatch;
 import com.project.service.CinemaClubFilmScreeningService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;

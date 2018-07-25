@@ -41,6 +41,8 @@ public class CinemaClubFilmScreeningServiceImplUnitTest {
         cinema.setCinemaName("dsa");
         cinema.increaseCurrentMoney(5000);
 
+
+        /*
         basicMovie = new BasicMovie.Builder()
                 .movieName("dsa")
                 .cinemaPrices(Language.HUNGARY_SYNC)
@@ -48,6 +50,7 @@ public class CinemaClubFilmScreeningServiceImplUnitTest {
                 .screenTechnologies(ScreenTechnologies.THREE_D)
                 .ticketPrice(80)
                 .build();
+                */
     }
 
     @Test

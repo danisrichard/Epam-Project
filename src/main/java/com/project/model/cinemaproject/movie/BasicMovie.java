@@ -31,51 +31,34 @@ public class BasicMovie{
         return screenTechnologies;
     }
 
-    private BasicMovie(Builder builder) {
-        movieName = builder.movieName;
-        IMDBPoint = builder.IMDBPoint;
-        language = builder.language;
-        screenTechnologies = builder.screenTechnologies;
-        ticketPrice = builder.ticketPrice;
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
     }
 
-    public static final class Builder {
-        private String movieName;
-        private int IMDBPoint;
-        private Language language;
-        private ScreenTechnologies screenTechnologies;
-        private int ticketPrice;
+    public void setIMDBPoint(int IMDBPoint) {
+        this.IMDBPoint = IMDBPoint;
+    }
 
-        public Builder() {
-        }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
-        public Builder movieName(String val) {
-            movieName = val;
-            return this;
-        }
+    public void setScreenTechnologies(ScreenTechnologies screenTechnologies) {
+        this.screenTechnologies = screenTechnologies;
+    }
 
-        public Builder ticketPrice(int val){
-            ticketPrice = val;
-            return this;
-        }
+    public void setTicketPrice(int ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
 
-        public Builder IMDBPoint(int val) {
-            IMDBPoint = val;
-            return this;
-        }
-
-        public Builder cinemaPrices(Language val) {
-            language = val;
-            return this;
-        }
-
-        public Builder screenTechnologies(ScreenTechnologies val) {
-            screenTechnologies = val;
-            return this;
-        }
-
-        public BasicMovie build() {
-            return new BasicMovie(this);
-        }
+    @Override
+    public String toString() {
+        return "BasicMovie{" +
+                "movieName='" + movieName + '\'' +
+                ", IMDBPoint=" + IMDBPoint +
+                ", language=" + language +
+                ", screenTechnologies=" + screenTechnologies +
+                ", ticketPrice=" + ticketPrice +
+                '}';
     }
 }

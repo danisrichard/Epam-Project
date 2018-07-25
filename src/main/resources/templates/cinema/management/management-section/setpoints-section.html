@@ -1,4 +1,6 @@
 <div class="uk-border-rounded uk-card uk-card-default uk-card-body"  xmlns:th="http://www.w3.org/1999/xhtml">
-    <h3 class="uk-card-title">Default</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <h3 class="uk-card-title">Cinema</h3>
+    <p th:text="${'Cinema name: ' + cinema.getCinemaName()}"></p>
+    <p th:text="${'Purity ' + cinema.getPurity() + '%' }"></p>
+    <p th:text="${'Maintaine: ' + cinema.getMaintained() + '%'}"></p>
 </div>

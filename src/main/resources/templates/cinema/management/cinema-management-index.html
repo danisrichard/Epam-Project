@@ -21,12 +21,12 @@
 
         <div class="uk-container uk-margin-top">
             <div class="uk-margin" uk-grid>
-                <div class="uk-width-expand@m">
+                <div class="uk-width-1-3">
 
                     <div th:replace="cinema/management/management-section/setpoints-section"></div>
 
                 </div>
-                <div class="uk-width-1-3@m">
+                <div class="uk-width-1-3">
                     <div>
                         <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
                             <h3 class="uk-card-title">Default</h3>
@@ -34,33 +34,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-width-auto@m">
-                    <div>
-                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
-                            <h3 class="uk-card-title">Default</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <div class="uk-width-1-3">
+
+                    <div class="uk-child-width-1-2" uk-grid>
+                        <div>
+                            <div th:replace="cinema/management/management-section/money-section"></div>
+                        </div>
+                        <div>
+                            <div th:replace="cinema/management/management-section/next-day-section"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="uk-margin" uk-grid>
                 <div class="uk-width-3-4">
-                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-4</div>
+
+                    <div th:replace="cinema/management/management-section/equipment-section"></div>
+
                 </div>
                 <div class="uk-width-1-4">
-                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">3-4</div>
+
+                    <div th:replace="cinema/management/management-section/movie-section"></div>
+
                 </div>
             </div>
 
             <div class="uk-text-center" uk-grid>
-                <div class="uk-width-1-3">
-                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                <div class="uk-width-1-6">
+                    <div>
+                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">2-6</div>
+                    </div>
                 </div>
-                <div class="uk-width-1-3">
-                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                <div class="uk-width-1-6">
+                    <div>
+                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">3-6</div>
+                    </div>
                 </div>
-                <div class="uk-width-1-3">
-                    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-3</div>
+                <div class="uk-width-1-6">
+                    <div>
+                        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-6</div>
+                    </div>
                 </div>
             </div>
 

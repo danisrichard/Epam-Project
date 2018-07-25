@@ -1,4 +1,4 @@
-package com.project.service.Impl;
+package com.project.service;
 
 public interface CinemaClubServiceDayEndService {
 

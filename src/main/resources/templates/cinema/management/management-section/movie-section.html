@@ -1,1 +1,44 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
+        <h3>Movie:</h3>
 
+        <form th:action="@{/cinema/movie}" th:movie="${movie}" method="post">
+            <div class="uk-margin">
+                <input class="uk-input" th:field="*{movie.movieName}" type="text" placeholder="Input">
+                <!--<p th:if="${#fields.hasErrors('movie.IMDBPoint')}" th:errors="*{movie.movieName}">Name Error</p>-->
+            </div>
+
+            <div class="uk-margin">
+                <select class="uk-select">
+                    <option th:each="state1 : ${T(com.project.model.cinemaproject.cinemastorage.ScreenTechnologies).values()}"
+                            value="${state1}"
+                            th:field="*{movie.screenTechnologies}"
+                            th:text="${state1}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="uk-margin">
+                <select class="uk-select">
+                    <option th:each="state2 : ${T(com.project.model.cinemaproject.cinemastorage.Language).values()}"
+                            value="${state2}"
+                            th:field="*{movie.language}"
+                            th:text="${state2}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="uk-margin">
+                <input class="uk-input" th:field="*{movie.ticketPrice}" type="text" placeholder="Ticket Price">
+                <!--<p th:if="${#fields.hasErrors('movie.IMDBPoint')}" th:errors="*{movie.ticketPrice}">Name Error</p>-->
+            </div>
+
+            <div class="uk-margin">
+                <input class="uk-range" type="range" value="5" min="1" max="10" step="1" th:field="*{movie.IMDBPoint}">
+            </div>
+
+            <button class="uk-border-rounded uk-button uk-button-primary">Calculate it!</button>
+
+        </form>
+    </div>
+</div>
