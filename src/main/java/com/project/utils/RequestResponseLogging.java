@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
 public class RequestResponseLogging implements HandlerInterceptor {
 
     private static final Logger logger = LogManager.getLogger(RequestResponseLogging.class);
@@ -31,8 +30,8 @@ public class RequestResponseLogging implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws NullPointerException {
         try {
-            logger.info("request method name: {}, response method name: {} , response time: {} ms",
-                    ((HandlerMethod) handler).getMethod().getName(), request.getRequestURI(), System.currentTimeMillis() - postTimeInMs);
+            logger.info(" response method name: {} , response time: {} ms",
+                    request.getRequestURI(), System.currentTimeMillis() - postTimeInMs);
         }catch (NullPointerException e){
             logger.info("Problem : " + e.fillInStackTrace());
         }

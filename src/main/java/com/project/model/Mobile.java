@@ -15,23 +15,27 @@ public class Mobile {
     String desc;
     String releaseDate;
 
-    private Mobile(Builder builder) {
-        setManufacture(builder.manufacture);
-        mobileType = builder.mobileType;
-        desc = builder.desc;
-        releaseDate = builder.releaseDate;
+    public Mobile() {
+    }
+
+
+    public Mobile(String manufacture, String mobileType, String desc) {
+        this.manufacture = manufacture;
+        this.mobileType = mobileType;
+        this.desc = desc;
+    }
+
+    public Mobile(String manufacture, String mobileType, String desc, String releaseDate) {
+        this.manufacture = manufacture;
+        this.mobileType = mobileType;
+        this.desc = desc;
+        this.releaseDate = releaseDate;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-    public String getReleaseDate() {
-        return releaseDate;
-    }
     public String getManufacture() {
         return manufacture;
     }
@@ -44,37 +48,23 @@ public class Mobile {
         return mobileType;
     }
 
-    public static final class Builder {
-        private String manufacture;
-        private String mobileType;
-        private String desc;
-        private String releaseDate;
+    public void setMobileType(String mobileType) {
+        this.mobileType = mobileType;
+    }
 
-        public Builder() {
-        }
+    public String getDesc() {
+        return desc;
+    }
 
-        public Builder manufacture(String val) {
-            manufacture = val;
-            return this;
-        }
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
-        public Builder mobileType(String val) {
-            mobileType = val;
-            return this;
-        }
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
-        public Builder desc(String val) {
-            desc = val;
-            return this;
-        }
-
-        public Builder releaseDate(String val) {
-            releaseDate = val;
-            return this;
-        }
-
-        public Mobile build() {
-            return new Mobile(this);
-        }
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }

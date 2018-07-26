@@ -19,35 +19,19 @@ public class ProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Mobile mobile1 = new Mobile.Builder()
-                .manufacture("Samsung")
-                .mobileType("S7")
-                .desc("csoda")
-                .releaseDate("2017")
-                .build();
 
-        Mobile mobile2 = new Mobile.Builder()
-                .manufacture("Apple")
-                .mobileType("x")
-                .desc("ezisaz")
-                .releaseDate("2017")
-                .build();
+        Mobile mobile1 = new Mobile("Samsung","S8","Lorem ipsum", "2011");
+        Mobile mobile2 = new Mobile("Samsung","S5","Lorem ipsum", "2012");
+        Mobile mobile3 = new Mobile("Samsung","S4","Lorem ipsum", "2013");
+        Mobile mobile4 = new Mobile("Samsung","S7","Lorem ipsum", "2014");
+        Mobile mobile5 = new Mobile("Samsung","S7","Lorem ipsum");
 
-        Mobile mobile3 = new Mobile.Builder()
-                .manufacture("Samsung")
-                .mobileType("S8")
-                .desc("dsadsad")
-                .releaseDate("2015")
-                .build();
-
-        Mobile mobile4 = new Mobile.Builder()
-                .mobileType("S8")
-                .releaseDate("2015")
-                .build();
 
         mobilePhoneRepository.save(mobile1);
         mobilePhoneRepository.save(mobile2);
         mobilePhoneRepository.save(mobile3);
         mobilePhoneRepository.save(mobile4);
+        mobilePhoneRepository.save(mobile5);
+
     }
 }

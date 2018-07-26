@@ -2,9 +2,11 @@ package com.project.controller;
 
 import com.project.error.NotEnoughFreePlaceException;
 import com.project.error.NotEnoughMoneyException;
+import com.project.error.NotFoundThisMobileException;
 import com.project.error.WeatherServiceException;
 import com.project.model.error.ExceptionResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,5 +45,12 @@ public class GlobalExceptionHandlerControllerAdvice {
                 .withErrorMessage(wse.getMessage())
                 .withRequestedURI(httpServletRequest.getRequestURI())
                 .build();
+    }
+
+    @ExceptionHandler(NotFoundThisMobileException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleNotFoundMobileInRepository(final NotFoundThisMobileException wse, final HttpServletRequest httpServletRequest, Model model) {
+        model.addAttribute("exception", new ExceptionResponse.Builder().build());
+        return "mobile-section/mobile-index";
     }
 }

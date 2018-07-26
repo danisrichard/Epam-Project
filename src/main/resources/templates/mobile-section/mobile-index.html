@@ -1,14 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"></head>
+<head th:replace="fragments/head"></head>
+<title th:if="${phone} != null" th:text="${phone.getTitleValue()}"></title>
 <body>
 <div class="uk-background-muted uk-position-cover ">
     <div class="uk-position-small uk-position-center">
         <div>
-            <div class="uk-card uk-border-rounded uk-card-primary uk-card-body">
-                <h2 th:text="${phone}" style="color:white"></h2>
+            <div th:if="${phone} != null" class="uk-card uk-border-rounded uk-card-primary uk-card-body">
+                <h2 th:text="${phone.getSentenceValue()}" style="color:white"></h2>
             </div>
+        </div>
+        <div th:if="${exception} != null">
+            <h2 th:text="#{exception.not_found_mobile}"></h2>
         </div>
     </div>
 </div>

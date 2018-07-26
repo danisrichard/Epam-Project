@@ -1,9 +1,8 @@
 package com.project.controller;
 
-import com.project.model.Mobile;
-import com.project.repository.MobilePhoneRepository;
+import com.project.error.NotFoundThisMobileException;
+import com.project.service.MobileFinderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/mobile")
@@ -19,17 +17,15 @@ import java.util.Locale;
 public class MobileFinderController {
 
     @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
-    private MobilePhoneRepository mobilePhoneRepository;
+    private MobileFinderService mobileFinderService;
 
     @GetMapping("/get/{id}")
-    public String getMobilePhone(Model model,@PathVariable String id){
-
-        Mobile mobile = mobilePhoneRepository.findById(id);
-
-        model.addAttribute("phone",messageSource.getMessage("phone",new Object[] {mobile.getManufacture(),mobile.getMobileType(),mobile.getReleaseDate()}, Locale.ENGLISH));
+    public String getMobilePhone(Model model, @PathVariable Long id) throws NotFoundThisMobileException {
+        try {
+            model.addAttribute("phone", mobileFinderService.getPhoneMessage(id));
+        }catch (Exception e){
+            throw new NotFoundThisMobileException();
+        }
         return "mobile-section/mobile-index";
     }
 }

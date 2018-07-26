@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import com.project.model.Mobile;
+import com.project.repository.MobilePhoneRepository;
 import com.project.service.XMLTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
