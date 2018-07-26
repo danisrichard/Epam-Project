@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.error.NotFoundThisMobileException;
 import com.project.model.ResponseMobile;
 import com.project.service.MobileFinderService;
 import org.junit.Before;
@@ -10,15 +11,19 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.*;
+import java.util.Properties;
+
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
@@ -38,7 +43,7 @@ public class MobileFinderControllerTest {
     }
 
     @Test
-    public void getMobilePhone() throws Exception {
+    public void testGetMobilePhoneShouldReturnResponseMobileEntityWhenCallURLAndRepoHasGotIt() throws Exception {
         when(mobileFinderService.getPhoneMessage((long) 2)).thenReturn(new ResponseMobile.Builder()
                 .titleValue("Samsung S5")
                 .sentenceValue("Manufacture: Samsung Release Date: 2012 Type: S5 Desc: Lorem ipsum")
@@ -56,4 +61,19 @@ public class MobileFinderControllerTest {
         verify(mobileFinderService, times(1)).getPhoneMessage(2L);
         verifyNoMoreInteractions(mobileFinderService);
     }
+
+    @Test
+    public void testGetMobilePhoneShouldReturnPropertyErrorMessageWhenCallUrlWithInvalidValue()throws Exception{
+
+
+        mockMvc.perform(get("/mobile/get/10"))
+                .andExpect(status().is4xxClientError())
+                .andExpect(model().attribute("exception",hasItem(
+                        allOf(
+                                hasProperty()
+                        )
+                )))
+
+    }
+
 }

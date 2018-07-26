@@ -67,4 +67,14 @@ public class Mobile {
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    @Override
+    public String toString() {
+        return "Mobile{" +
+                ", manufacture='" + manufacture + '\'' +
+                ", mobileType='" + mobileType + '\'' +
+                ", desc='" + desc + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                '}';
+    }
 }

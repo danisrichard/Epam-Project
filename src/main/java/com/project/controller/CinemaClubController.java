@@ -61,8 +61,6 @@ public class CinemaClubController {
         if(bindingResult.hasErrors()) {
             logger.info("error");
         }
-
-        System.out.println(basicMovie.toString());
         movie = cinemaClubFilmScreeningService.getConcreteMovie(basicMovie,cinema);
         return "redirect: /cinema/management/cinema-management-index";
     }
