@@ -4,14 +4,10 @@ import com.project.model.User;
 import com.project.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +56,7 @@ public class UserServiceImplTest {
 
         when(userRepository.save(any(User.class))).thenReturn(new User());
 
-        assertThat(userService.addNewUser(user),is(notNullValue()));
+        assertThat(userService.addNewUser(user), is(notNullValue()));
     }
 
     @Test
@@ -69,24 +65,24 @@ public class UserServiceImplTest {
 
     @Test
     public void testfindUserByFirstNameWithoutQueryShouldReturnListWithTwoUserWhenSearchToA() {
-        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1, user, user2));
         List<User> userList = userService.findUserByFirstNameWithoutQuery("A");
 
         assertNotNull(userList);
-        assertEquals(2,userList.size());
+        assertEquals(2, userList.size());
     }
 
     @Test
     public void testfindUserByFirstNameWithoutQueryShouldReturnListWithoutResultWhenInputIsNull() {
-        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1, user, user2));
         List<User> userList = userService.findUserByFirstNameWithoutQuery(null);
 
         assertTrue(userList.isEmpty());
     }
 
     @Test
-    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithoutResultWhenInputIsDButItsNotRepresent(){
-        when(userRepository.findAll()).thenReturn(Arrays.asList(user1,user,user2));
+    public void testfindUserByFirstNameWithoutQueryShouldReturnListWithoutResultWhenInputIsDButItsNotRepresent() {
+        when(userRepository.findAll()).thenReturn(Arrays.asList(user1, user, user2));
         List<User> userList = userService.findUserByFirstNameWithoutQuery("D");
 
         assertTrue(userList.isEmpty());

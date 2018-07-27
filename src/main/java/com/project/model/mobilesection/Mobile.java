@@ -1,4 +1,4 @@
-package com.project.model;
+package com.project.model.mobilesection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

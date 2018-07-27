@@ -1,9 +1,8 @@
 package com.project.service.Impl;
 
-import com.project.model.Mobile;
-import com.project.model.ResponseMobile;
+import com.project.model.mobilesection.Mobile;
+import com.project.model.mobilesection.ResponseMobile;
 import com.project.repository.MobilePhoneRepository;
-import com.project.service.WeatherAppService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -18,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Locale;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

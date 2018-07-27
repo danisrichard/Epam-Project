@@ -53,4 +53,10 @@ public class GlobalExceptionHandlerControllerAdvice {
         model.addAttribute("exception", new ExceptionResponse.Builder().build());
         return "mobile-section/mobile-index";
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleNotFoundPage(){
+        return "404";
+    }
 }

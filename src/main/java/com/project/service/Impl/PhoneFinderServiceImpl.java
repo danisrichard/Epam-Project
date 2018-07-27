@@ -1,17 +1,24 @@
 package com.project.service.Impl;
 
-import com.project.model.Mobile;
-import com.project.model.ResponseMobile;
+import com.project.model.mobilesection.Mobile;
+import com.project.model.mobilesection.ResponseMobile;
 import com.project.repository.MobilePhoneRepository;
 import com.project.service.MobileFinderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PhoneFinderServiceImpl implements MobileFinderService {
 
     @Autowired
@@ -19,6 +26,11 @@ public class PhoneFinderServiceImpl implements MobileFinderService {
 
     @Autowired
     private MobilePhoneRepository mobilePhoneRepository;
+
+    @Override
+    public Page<Mobile> getAllByPage(Pageable pageable) {
+       return mobilePhoneRepository.findAll(pageable);
+    }
 
     @Override
     public ResponseMobile getPhoneMessage(Long id) throws IllegalStateException {

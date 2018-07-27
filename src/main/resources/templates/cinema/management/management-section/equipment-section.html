@@ -1,6 +1,26 @@
-<div>
-    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">1-4
-
-
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
+        <table class="uk-table uk-table-middle uk-table-divider">
+            <thead>
+            <tr>
+                <th class="uk-width-small">Equipment Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody th:if="${equipment} != null">
+            <tr th:each="equipment : ${equipment}">
+                <td th:text="${equipment.getName()}"></td>
+                <td th:text="${equipment.getEquipmentDesc()}"></td>
+                <td th:text="${equipment.getPrice()}"></td>
+                <td>
+                    <a th:href="@{'/cinema/equipment/{id}'(id=${equipment.getId()}) }">
+                        <button class="uk-border-rounded uk-button uk-button-default" type="button">Button</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>

@@ -7,7 +7,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -18,19 +21,19 @@ public class DummyUserListCreatorController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/user-registration")
-    public String loadUserRegSite(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("userList", userService.getAllUser());
-        return "user-registration";
-    }
-
     @RequestMapping(value = "/add-user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String registerUser(@Valid User user, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             userService.addNewUser(user);
         }
         return "redirect:/user-registration";
+    }
+
+    @GetMapping(value = "/user-registration")
+    public String loadUserRegSite(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("userList", userService.getAllUser());
+        return "user-registration";
     }
 
     @RequestMapping(value = "/delete-user/", method = RequestMethod.GET)

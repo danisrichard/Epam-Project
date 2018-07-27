@@ -1,6 +1,6 @@
 package com.project;
 
-import com.project.model.Mobile;
+import com.project.model.mobilesection.Mobile;
 import com.project.repository.MobilePhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,12 +26,10 @@ public class ProjectApplication implements CommandLineRunner {
         Mobile mobile4 = new Mobile("Samsung","S7","Lorem ipsum", "2014");
         Mobile mobile5 = new Mobile("Samsung","S7","Lorem ipsum");
 
-
         mobilePhoneRepository.save(mobile1);
         mobilePhoneRepository.save(mobile2);
         mobilePhoneRepository.save(mobile3);
         mobilePhoneRepository.save(mobile4);
         mobilePhoneRepository.save(mobile5);
-
     }
 }
