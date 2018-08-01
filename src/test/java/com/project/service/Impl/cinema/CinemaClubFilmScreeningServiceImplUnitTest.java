@@ -35,69 +35,32 @@ public class CinemaClubFilmScreeningServiceImplUnitTest {
 
     @Before
     public void init() {
-        MockitoAnnotations.initMocks(this);
         cinema = new BasicCinema();
         cinema.setCinemaName("dsa");
         cinema.increaseCurrentMoney(5000);
-
-
-        /*
-        basicMovie = new BasicMovie.Builder()
-                .movieName("dsa")
-                .cinemaPrices(Language.HUNGARY_SYNC)
-                .IMDBPoint(3)
-                .screenTechnologies(ScreenTechnologies.THREE_D)
-                .ticketPrice(80)
-                .build();
-                */
     }
 
     @Test
     public void testgetConcreteMovieWhenShouldReturnPopularityIndex() {
         Movie movie = cinemaClubFilmScreeningService.getConcreteMovie(basicMovie, cinema);
-
         double popularityIndex = movie.getPopularityIndex();
 
-        assertEquals(popularityIndex,POPULARITY_INDEX);
+        assertEquals(popularityIndex, POPULARITY_INDEX);
     }
 
     @Test
     public void testgetConcreteMovieWhenValidInputShouldReturnValidLeaseRights() {
         Movie movie = cinemaClubFilmScreeningService.getConcreteMovie(basicMovie, cinema);
-
         int leaseRights = movie.getLeaseRights();
 
-        assertEquals(leaseRights,LEASE_RIGHT_PRICE);
+        assertEquals(leaseRights, LEASE_RIGHT_PRICE);
     }
 
     @Test
     public void testgetConcreteMovieWhenValidInputShouldReturnValidChanceToWatch() {
         Movie movie = cinemaClubFilmScreeningService.getConcreteMovie(basicMovie, cinema);
-
         double popularityIndex = movie.getChanceToWatch();
 
-        assertEquals(popularityIndex,CHANCE_TO_WATCH);
+        assertEquals(popularityIndex, CHANCE_TO_WATCH);
     }
-
-    @Test
-    public void testshit(){
-
-        Cinema cinema1 = new ThreeDProjectorCinema(new BasicCinema());
-
-        cinema1.setCinemaName("dsadsa");
-        cinema1.increaseCurrentMoney(200000);
-        cinema1.increaseFloorAreaOne();
-
-        Cinema dsa = new CinemaCanvas(new ThreeDProjectorCinema(new BasicCinema()));
-
-
-
-        System.out.println(cinema1.getCinemaName());
-        System.out.println(cinema1.getCurrentMoney());
-
-        System.out.println(dsa.getCinemaName() + " " + cinema1.getCinemaName());
-
-    }
-
-
 }

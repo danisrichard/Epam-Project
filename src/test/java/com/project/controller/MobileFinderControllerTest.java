@@ -1,15 +1,20 @@
 package com.project.controller;
 
+import com.project.error.NotFoundThisMobileException;
+import com.project.model.error.ExceptionResponse;
 import com.project.model.mobilesection.ResponseMobile;
 import com.project.service.MobileFinderService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -23,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @AutoConfigureMockMvc
 public class MobileFinderControllerTest {
 
@@ -34,7 +39,7 @@ public class MobileFinderControllerTest {
     private MobileFinderService mobileFinderService;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
@@ -45,7 +50,7 @@ public class MobileFinderControllerTest {
                 .sentenceValue("Manufacture: Samsung Release Date: 2012 Type: S5 Desc: Lorem ipsum")
                 .build());
 
-        mockMvc.perform(get("/mobile/get/2"))
+        this.mockMvc.perform(get("/mobile/get/2"))
                 .andExpect(view().name("mobile-section/mobile-index"))
                 .andExpect(model().attribute("phone", hasItem(
                         allOf(
@@ -59,8 +64,21 @@ public class MobileFinderControllerTest {
     }
 
     @Test
-    public void testGetMobilePhoneShouldReturnPropertyErrorMessageWhenCallUrlWithInvalidValue()throws Exception{
+    public void testGetMobilePhoneShouldReturnPropertyErrorMessageWhenCallUrlWithInvalidValue() throws Exception {
+        NotFoundThisMobileException notFoundThisMobileException = Mockito.mock(NotFoundThisMobileException.class);
+        doThrow(notFoundThisMobileException).when(mobileFinderService.getPhoneMessage(10L));
 
+        this.mockMvc.perform(get("/mobile/get/10"))
+                .andExpect(view().name("mobile-section/mobile-index"))
+                .andExpect(model().attribute("exception", hasItem(
+                        allOf(
+                                hasProperty("titleValue", is("Samsung S5")),
+                                hasProperty("sentenceValue", is("Manufacture: Samsung Release Date: 2012 Type: S5 Desc: Lorem ipsum"))
+                        )
+                )));
+
+        verify(mobileFinderService,times(1)).getPhoneMessage(10L);
+        verifyNoMoreInteractions(mobileFinderService);
     }
 
 }

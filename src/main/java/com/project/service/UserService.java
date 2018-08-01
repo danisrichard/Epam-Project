@@ -2,6 +2,7 @@ package com.project.service;
 
 
 import com.project.model.User;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,4 +18,6 @@ public interface UserService {
     List<User> findUserByFirstNameWithoutQuery(String firstName);
 
     void deleteUser(UUID id);
+
+    String getAddress(User user);
 }

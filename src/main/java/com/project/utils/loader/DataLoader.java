@@ -1,4 +1,4 @@
-package com.project.utils;
+package com.project.utils.loader;
 
 import com.project.model.cinemaproject.equipment.Equipment;
 import com.project.repository.EquipmentRepository;

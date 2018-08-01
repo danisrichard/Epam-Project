@@ -47,7 +47,6 @@ public class CinemaClubController {
 
     @GetMapping("/cinema-management")
     public String manageCinema(Model model) {
-        model.addAttribute("movie", movie);
         model.addAttribute("cinema", cinema);
         model.addAttribute("movie", new BasicMovie());
         model.addAttribute("equipment", cinemaClubService.getAllEquipment());
@@ -60,7 +59,7 @@ public class CinemaClubController {
             logger.info("error");
         }
         movie = cinemaClubFilmScreeningService.getConcreteMovie(basicMovie, cinema);
-        return "redirect: /cinema/management/cinema-management-index";
+        return "redirect:/cinema/management/cinema-management-index";
     }
 
     @RequestMapping(value = "/equipment/{id}", method = RequestMethod.GET)
@@ -70,8 +69,12 @@ public class CinemaClubController {
     }
 
     @GetMapping("/maintain")
-    public String maintainCinema(){
+    public String maintainCinema() {
+        return "redirect:/cinema/cinema-management";
+    }
 
+    @GetMapping("/nextday")
+    public String nextDay() {
         return "redirect:/cinema/cinema-management";
     }
 

@@ -36,12 +36,11 @@ public class CinemaClubImplIntegrationTest {
 
         cinemaClubService.addNewEquipment(equipment);
 
-        assertEquals(cinemaClubService.addNewEquipment(equipment),equipment);
+        assertEquals(cinemaClubService.addNewEquipment(equipment), equipment);
     }
 
     @Test
     public void buyEquipmentWhenUseValidMaintenanceInputShouldReturnProObject() {
-
     }
 
     @Test

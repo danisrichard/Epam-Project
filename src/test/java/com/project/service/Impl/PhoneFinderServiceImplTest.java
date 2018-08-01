@@ -11,19 +11,18 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.context.MessageSource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Locale;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class PhoneFinderServiceImplTest {
 
     private static final Logger logger = LogManager.getLogger(PhoneFinderServiceImplTest.class);
@@ -38,22 +37,27 @@ public class PhoneFinderServiceImplTest {
     private MobilePhoneRepository mobilePhoneRepository;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void testGetPhoneMessageWhenReturnValidMobileIDShouldReturnResponseMobileBuilder() {
         when(mobilePhoneRepository.findById(2L)).thenReturn(Optional.of(new Mobile("Samsung", "S8", "Lorem ipsum", "2011")));
-        when(messageSource.getMessage("manufacture",new Object[]{"Samsung"},Locale.ENGLISH)).thenReturn("Manufacture: Samsung");
-        when(messageSource.getMessage("manufacture",new Object[]{"Samsung"},Locale.ENGLISH)).thenReturn("Manufacture: Samsung");
-
+        when(messageSource.getMessage("manufacture", new Object[]{"Samsung"}, Locale.ENGLISH)).thenReturn("Manufacture: Samsung");
+        when(messageSource.getMessage("manufacture", new Object[]{"Samsung"}, Locale.ENGLISH)).thenReturn("Manufacture: Samsung");
 
         ResponseMobile responseMobile = phoneFinderService.getPhoneMessage(2L);
 
         assertNotNull(responseMobile);
-        assertEquals("Manufacture: Samsung null null null",responseMobile.getSentenceValue());
+        assertEquals("Manufacture: Samsung null null null", responseMobile.getSentenceValue());
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void testGetPhoneMessageWhenGetInvalidPhoneNumberShouldThrowNewIllegalStateException() {
+        doThrow(new IllegalStateException()).when(mobilePhoneRepository).findById(2L);
+
+        assertEquals(phoneFinderService.getPhoneMessage(2L), "Valami");
+    }
 
 }

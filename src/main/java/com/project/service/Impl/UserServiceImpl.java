@@ -4,8 +4,11 @@ import com.project.model.User;
 import com.project.repository.UserRepository;
 import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,6 +22,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    @Cacheable(value = {"ADDRESS"}, key = "#user.address")
+    public String getAddress(User user) {
+        return userRepository.findById(user.getId()).map(User::getAddress).orElse("Not address for this user.");
+    }
+
+    @Override
     public Iterable<User> getAllUser() {
         return userRepository.findAll();
     }
@@ -30,15 +39,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findUserByFirstNameQuery(String firstName) {
-        return null;
+        return Optional.empty();
     }
 
     @Override
     public List<User> findUserByFirstNameWithoutQuery(String firstName) {
-        Iterable<User> listOfAllUser = userRepository.findAll();
-        return StreamSupport.stream(listOfAllUser.spliterator(),false)
-                            .filter(e -> e.getFirstName().equalsIgnoreCase(firstName))
-                            .collect(Collectors.toList());
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+                .filter(e -> e.getFirstName().equalsIgnoreCase(firstName))
+                .collect(Collectors.toList());
     }
 
     @Override

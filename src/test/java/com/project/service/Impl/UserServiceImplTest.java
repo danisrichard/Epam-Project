@@ -4,10 +4,12 @@ import com.project.model.User;
 import com.project.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +17,10 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
 
     @InjectMocks
@@ -26,9 +29,9 @@ public class UserServiceImplTest {
     @Mock
     UserRepository userRepository;
 
-    User user = new User();
-    User user1 = new User();
-    User user2 = new User();
+    private User user = new User();
+    private User user1 = new User();
+    private User user2 = new User();
 
     @Before
     public void init() {

@@ -20,8 +20,17 @@ public class User {
     private String firstName;
     @NotEmpty(message = "Second name is required")
     private String secondName;
+    private String address;
 
     public User() {
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public UUID getId() {
