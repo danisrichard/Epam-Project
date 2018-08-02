@@ -1,4 +1,4 @@
-package com.project.utils;
+package com.project.utils.weather;
 
 import com.project.error.WeatherServiceException;
 import com.project.model.City;

@@ -71,13 +71,10 @@ public class MobileFinderControllerTest {
         this.mockMvc.perform(get("/mobile/get/10"))
                 .andExpect(view().name("mobile-section/mobile-index"))
                 .andExpect(model().attribute("exception", hasItem(
-                        allOf(
-                                hasProperty("titleValue", is("Samsung S5")),
-                                hasProperty("sentenceValue", is("Manufacture: Samsung Release Date: 2012 Type: S5 Desc: Lorem ipsum"))
-                        )
+                        hasProperty("sentenceValue", is("No value represent."))
                 )));
 
-        verify(mobileFinderService,times(1)).getPhoneMessage(10L);
+        verify(mobileFinderService, times(1)).getPhoneMessage(10L);
         verifyNoMoreInteractions(mobileFinderService);
     }
 

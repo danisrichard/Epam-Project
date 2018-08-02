@@ -3,7 +3,7 @@ package com.project.service.Impl.cinema;
 import com.project.error.NotEnoughMoneyException;
 import com.project.model.cinemaproject.cinemadecorator.Cinema;
 import com.project.model.cinemaproject.maintenance.Maintenance;
-import com.project.service.CinemaClubMaintenanceService;
+import com.project.service.cinema.CinemaClubMaintenanceService;
 import com.project.utils.CinemaInputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

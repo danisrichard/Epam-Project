@@ -1,4 +1,4 @@
-package com.project.service;
+package com.project.service.cinema;
 
 import com.project.model.cinemaproject.cinemadecorator.Cinema;
 import com.project.model.cinemaproject.movie.BasicMovie;

@@ -34,9 +34,7 @@ public class PhoneFinderServiceImpl implements MobileFinderService {
 
     @Override
     public ResponseMobile getPhoneMessage(Long id) throws IllegalStateException {
-        Optional<Mobile> mobile = mobilePhoneRepository.findById(id);
-
-        Mobile concreteMobile = mobile.get();
+        Mobile concreteMobile = mobilePhoneRepository.findById(id).get();
 
         HashMap<String,String> mobileField = new HashMap<>();
 

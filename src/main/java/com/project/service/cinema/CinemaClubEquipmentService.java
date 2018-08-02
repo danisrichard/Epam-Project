@@ -1,4 +1,4 @@
-package com.project.service;
+package com.project.service.cinema;
 
 import com.project.error.NotEnoughFreePlaceException;
 import com.project.error.NotEnoughMoneyException;

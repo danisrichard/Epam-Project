@@ -8,7 +8,7 @@ import com.project.model.cinemaproject.cinemadecorator.decorator.ThreeDProjector
 import com.project.model.cinemaproject.cinemadecorator.decorator.TwoDProjectorCinema;
 import com.project.model.cinemaproject.equipment.Equipment;
 import com.project.repository.EquipmentRepository;
-import com.project.service.CinemaClubEquipmentService;
+import com.project.service.cinema.CinemaClubEquipmentService;
 import com.project.utils.CinemaInputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

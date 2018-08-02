@@ -1,9 +1,7 @@
 package com.project.service.Impl;
 
 import com.project.model.cinemaproject.equipment.Equipment;
-import com.project.model.cinemaproject.maintenance.Maintenance;
-import com.project.model.cinemaproject.maintenance.MaintenanceFactory;
-import com.project.service.CinemaClubEquipmentService;
+import com.project.service.cinema.CinemaClubEquipmentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

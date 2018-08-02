@@ -1,4 +1,4 @@
-package com.project.utils;
+package com.project.utils.weather;
 
 import com.project.model.weatherapp.weatherwrapper.Weather;
 import com.project.model.weatherapp.apixuWeather.ApixuWeather;

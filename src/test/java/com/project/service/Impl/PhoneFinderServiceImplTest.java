@@ -55,9 +55,14 @@ public class PhoneFinderServiceImplTest {
 
     @Test(expected = IllegalStateException.class)
     public void testGetPhoneMessageWhenGetInvalidPhoneNumberShouldThrowNewIllegalStateException() {
-        doThrow(new IllegalStateException()).when(mobilePhoneRepository).findById(2L);
+        when(mobilePhoneRepository.findById(2L)).thenReturn(Optional.empty());
 
-        assertEquals(phoneFinderService.getPhoneMessage(2L), "Valami");
+        try {
+            phoneFinderService.getPhoneMessage(2L);
+        }catch (IllegalStateException e){
+            System.out.println("dob");
+        }
+
     }
 
 }

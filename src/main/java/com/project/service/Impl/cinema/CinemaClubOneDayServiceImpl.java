@@ -1,6 +1,6 @@
 package com.project.service.Impl.cinema;
 
-import com.project.service.CinemaClubServiceDayEndService;
+import com.project.service.cinema.CinemaClubServiceDayEndService;
 import com.project.utils.CinemaInputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
