@@ -1,5 +1,6 @@
 package com.project.service.Impl;
 
+import com.project.error.NotFoundThisMobileException;
 import com.project.model.mobilesection.Mobile;
 import com.project.model.mobilesection.ResponseMobile;
 import com.project.repository.MobilePhoneRepository;
@@ -11,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,8 +31,8 @@ public class PhoneFinderServiceImpl implements MobileFinderService {
     }
 
     @Override
-    public ResponseMobile getPhoneMessage(Long id) throws IllegalStateException {
-        Mobile concreteMobile = mobilePhoneRepository.findById(id).get();
+    public ResponseMobile getPhoneMessage(Long id) throws NotFoundThisMobileException {
+        Mobile concreteMobile = mobilePhoneRepository.findById(id).orElseThrow(NotFoundThisMobileException::new);
 
         HashMap<String,String> mobileField = new HashMap<>();
 

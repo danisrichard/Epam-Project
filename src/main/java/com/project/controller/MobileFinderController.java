@@ -24,11 +24,7 @@ public class MobileFinderController {
 
     @GetMapping("/get/{id}")
     public String getMobilePhone(Model model, @PathVariable Long id) throws NotFoundThisMobileException {
-        try {
-            model.addAttribute("phone", mobileFinderService.getPhoneMessage(id));
-        } catch (Exception e) {
-            throw new NotFoundThisMobileException();
-        }
+        model.addAttribute("phone", mobileFinderService.getPhoneMessage(id));
         return "mobile-section/mobile-index";
     }
 
