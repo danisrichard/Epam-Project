@@ -25,6 +25,12 @@ public class User {
     public User() {
     }
 
+    public User(@NotEmpty(message = "First name is required") String firstName, @NotEmpty(message = "Second name is required") String secondName, String address) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.address = address;
+    }
+
     public String getAddress() {
         return address;
     }

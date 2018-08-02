@@ -56,7 +56,7 @@ public class GlobalExceptionHandlerControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFoundPage(){
+    public String handleNotFoundPage() {
         return "404";
     }
 }

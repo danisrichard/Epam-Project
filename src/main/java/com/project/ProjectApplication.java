@@ -1,7 +1,9 @@
 package com.project;
 
+import com.project.model.User;
 import com.project.model.mobilesection.Mobile;
 import com.project.repository.MobilePhoneRepository;
+import com.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +14,9 @@ public class ProjectApplication implements CommandLineRunner {
 
     @Autowired
     private MobilePhoneRepository mobilePhoneRepository;
+
+    @Autowired
+    private UserRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectApplication.class, args);
@@ -31,5 +36,7 @@ public class ProjectApplication implements CommandLineRunner {
         mobilePhoneRepository.save(mobile3);
         mobilePhoneRepository.save(mobile4);
         mobilePhoneRepository.save(mobile5);
+
+        repository.save(new User("Teszt","Teszt1","Teszt City"));
     }
 }
