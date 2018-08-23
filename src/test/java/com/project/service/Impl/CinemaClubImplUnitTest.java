@@ -9,7 +9,6 @@ import com.project.model.cinemaproject.cinemadecorator.decorator.ThreeDProjector
 import com.project.model.cinemaproject.cinemadecorator.decorator.TwoDProjectorCinema;
 import com.project.model.cinemaproject.equipment.Equipment;
 import com.project.model.cinemaproject.maintenance.MaintenanceFactory;
-import com.project.repository.EquipmentRepository;
 import com.project.service.Impl.cinema.CinemaClubEquipmentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
