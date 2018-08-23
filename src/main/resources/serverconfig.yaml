@@ -8,12 +8,3 @@ h2:
     driver-class-name:org.h2.Driver
   jpa:
     show-sql=true
-
-# Mongo DB
-
-mongodb:
-  datasource:
-      mongodb:
-        database: testdb
-        host: localhost
-        port: 27017
